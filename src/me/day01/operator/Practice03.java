@@ -9,8 +9,7 @@ public class Practice03 {
         System.out.print("연도 입력 : ");
         int year = scanner.nextInt();
         String leapYearAnswer = (year %  4 == 0 && year % 100 != 0) || (year % 400 == 0) ? "윤년" : "평년";
-
-        System.out.printf("%d 년은 [%s] 입니다.\n", year, leapYearAnswer); // print format
+        System.out.printf("%d 년은 [%s] 입니다.\n", year, leapYearAnswer);
 
         scanner.close();
     }

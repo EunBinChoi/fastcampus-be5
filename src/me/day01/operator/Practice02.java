@@ -6,20 +6,17 @@ public class Practice02 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("x?");
+        System.out.print("정수 입력 : ");
         int x = scanner.nextInt();
 
-        System.out.print("y?");
+        System.out.print("정수 입력 : ");
         int y = scanner.nextInt();
 
-        if (x == y) {
-            System.out.println("x, y를 비교할 수 없습니다.");
-            return; // main 함수 종료
-        }
-
-        int max = Math.max(x, y);
         int min = Math.min(x, y);
+        int max = Math.max(x, y);
+        System.out.println("\n>> 최솟값 : " + min);
+        System.out.println(">> 최댓값 : " + max);
 
-
+        scanner.close();
     }
 }

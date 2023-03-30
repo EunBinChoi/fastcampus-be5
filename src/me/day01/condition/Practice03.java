@@ -1,38 +1,60 @@
 package me.day01.condition;
 
+import java.util.Scanner;
+
 public class Practice03 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        double x = 1.5;
-        double y = 0;
+        // 3 + 5
+        System.out.print("연산식을 입력하시오 : ");
+        char x = scanner.next().charAt(0);
+        char op = scanner.next().charAt(0);
+        char y = scanner.next().charAt(0);
 
-        if (x == 0) {
 
-        } else if (y == 0) {
-
-        } else if (x >0 && y >0) { // 1
-
-        } else if (x >0 && y >0) {//2
-
-        } else if (x >0 && y >0) { // 3
-
-        } else if (x >0 && y >0) { //4
-
+        if (!(x >= '0' && x <= '9')) {
+            System.out.println(x + "가 한자리 피연산자가 아닙니다!");
+            return;
         }
 
-        // 90 80 70 60 other
-
-        double avg = 80;
-        if (avg >= 90) {
-            System.out.println("A");
-        } else if (avg >= 80) { // 80 <= avg < 90
-            System.out.println("B");
-        } else if (avg >= 70) { // 70 <= avg < 80
-            System.out.println("C");
-        } else if (avg >= 60) { // 60 <= avg < 70
-            System.out.println("D");
-        } else { // avg < 60
-            System.out.println("D");
+        if (!(op == '+' || op == '-' || op == '*' || op == '/' || op == '%')) {
+            System.out.println(op + "가 유효하지 않은 연산자 입니다.");
+            return;
         }
+
+        if (!(y >= '0' && y <= '9')) {
+            System.out.println(y + "가 한자리 피연산자가 아닙니다!");
+            return;
+        }
+
+
+        // '0' <= x, y <= '9'
+        // (op == '+' || op == '-' || op == '*' || op == '/' || op == '%')
+        int xi = x - '0';
+        // '0' ~ '9' == 48 ~ 57 (아스키코드 범위)
+
+        // '9' - '0' = 57 - 48 = 9
+        // '8' - '0' = 56 - 48 = 8
+        // '5' - '0' = 53 - 48 = 5
+
+        int yi = y - '0';
+        double res = 0;
+
+        if (op == '+') {
+            res = xi + yi;
+        } else if (op == '-') {
+            res = xi - yi;
+        } else if (op == '*') {
+            res = xi * yi;
+        } else if (op == '/') {
+            res = xi / (double) yi;
+        } else { // op == '%'
+            res = xi % yi;
+        }
+
+        System.out.printf("%d %c %d = %.2f\n", xi, op, yi, res);
+
+        scanner.close();
     }
 }

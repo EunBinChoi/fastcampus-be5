@@ -3,15 +3,17 @@ package me.day02.string;
 class Solution {
     public boolean isPalindrome(String s) { // 회문
         String newStr = s.toLowerCase().replaceAll("[^0-9a-z]", "");
-//        if (newStr.length() == 0) return true;
 
+        // string method
 //        String reversed = new StringBuilder(newStr).reverse().toString();
 //        return newStr.equals(reversed);
 
-        int newStrLen = newStr.length();
-        for (int i = 0; i < newStrLen / 2; i++) {
-            int j = newStrLen - 1 - i;
+
+        // two pointer
+        int j = newStr.length() - 1;
+        for (int i = 0; i < newStr.length() / 2; i++) {
             if (newStr.charAt(i) != newStr.charAt(j)) return false;
+            j--;
         }
         return true;
     }

@@ -6,24 +6,23 @@ public class Practice02 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // 문자를 받는 방법
-        //char letter = (char)scanner.nextInt();
+        System.out.print("영문자 하나를 입력하시오: ");
+        char ch = scanner.next().charAt(0); // "a" -> 'a'
 
-        // abcd => a
-        // a => a
-        String letter2 = scanner.next();
-        if (letter2.length() != 1) {
-            System.out.println("문자열이야,, 이놈아,,");
+        // 영문자가 아님 a ~ z, A ~ Z
+        if (!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))) {
+            System.out.println("입력하신 문자 " + ch + " 가 유효하지 않습니다.");
             return;
         }
-        char ch = letter2.charAt(0);
 
-        // 소문자를 대문자로 변경하는 프로그램
-        // 'a': 97
-        // 'A': 65
-        if (ch >= 'a' && ch <= 'z') {
+        // 소문자라면 대문자로 변경하는 프로그램
+        // 소문자 -> 대문자 (- ('a' - 'A'))
+        // 대문자 -> 대문자 (아무런 작업이 필요없음)
+        if ((ch >= 'a' && ch <= 'z')) {
             ch -= ('a' - 'A');
         }
-        System.out.println("ch = " + ch);
+        System.out.println("결과 문자는 " + ch + " 입니다.");
+
+        scanner.close();
     }
 }
