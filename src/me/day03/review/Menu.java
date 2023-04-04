@@ -9,10 +9,10 @@ public enum Menu { // class Enum
     RAMEN(3000, "라면"),
 
     // static final int KIMBAB = 2;
-    TBK(4000, "떡볶이"),
+    TTEOK_BOK_KI(4000, "떡볶이"),
 
     // static final int KIMBAB = 3;
-    DKS(5000, "돈까쓰");
+    PORK_CUTLET(5000, "돈까스");
 
     private int price = 0;
     private String name = "";
@@ -49,6 +49,7 @@ public enum Menu { // class Enum
     }
 
     public static void printMenu() {
+        System.out.println("메뉴");
         System.out.println("==================");
         for (int i = 0; i < Menu.values().length; i++) {
             System.out.printf("%d. %s (%d)\n", i+1, Menu.values()[i].getName(), Menu.values()[i].getPrice());
