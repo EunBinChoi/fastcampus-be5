@@ -47,4 +47,20 @@ public enum Menu { // class Enum
         }
         return minValue; // 300
     }
+
+    public static void printMenu() {
+        System.out.println("==================");
+        for (int i = 0; i < Menu.values().length; i++) {
+            System.out.printf("%d. %s (%d)\n", i+1, Menu.values()[i].getName(), Menu.values()[i].getPrice());
+        }
+        System.out.println("==================");
+    }
+
+    @Override // Object 클래스에서 상속받음
+    public String toString() {
+        return "Menu{" +
+                "price=" + price +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

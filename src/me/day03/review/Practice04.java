@@ -17,7 +17,7 @@ public class Practice04 {
 
         int num = 0; // 선택해서 주문 가능한 메뉴의 개수
         while(true) {
-            printMenu();
+            Menu.printMenu();
             System.out.print("메뉴 주문 번호: ");
             int choice = scanner.nextInt(); // 메뉴 선택 번호
             if (choice == 5) {
@@ -70,11 +70,5 @@ public class Practice04 {
             System.out.println("지금까지 선택하신 식사 주문이 완료되었습니다.");
         }
     }
-    public static void printMenu() {
-        System.out.println("==================");
-        for (int i = 0; i < Menu.values().length; i++) {
-            System.out.printf("%d. %s (%d)\n", i+1, Menu.values()[i].getName(), Menu.values()[i].getPrice());
-        }
-        System.out.println("==================");
-    }
+
 }
