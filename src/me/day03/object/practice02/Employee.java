@@ -2,7 +2,7 @@ package me.day03.object.practice02;
 
 import java.util.Objects;
 
-public class Employee {
+public class Employee { // google 에 다니는 직원들
     /* ID is auto-generated */
     private String eId;
     private String eName;

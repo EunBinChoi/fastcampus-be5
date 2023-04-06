@@ -12,9 +12,17 @@ public class Student {
         sId = String.format("%04d", numOfStudent);
     }
 
+    // Student student = new Student(); // 객체에 대한 주소값
+    // this => 객체에 대한 주소값을 통해 필드나 생성자/메소드를 접근
+
+
+    // Student student = new Student("Sally");
+
+    // Student student = new Student();
+    // student.setsName("Sally");
     public Student(String sName, Semester currentSemester) {
-        numOfStudent++;
-        this.sId = String.format("%04d", numOfStudent);
+        this(); //
+        
         this.sName = sName;
         this.currentSemester = currentSemester;
     }

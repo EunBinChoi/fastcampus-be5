@@ -4,6 +4,13 @@ public class Main {
     public static void main(String[] args) {
         // 열거형 사용
         System.out.println(Employee.COMPANY + "에는 다음과 같은 부서가 있습니다.");
+
+        // for-each (==for-i)
+        for (int i = 0; i < Department.values().length; i++) {
+            Department department = Department.values()[i];
+        }
+
+        // 인덱스가 없기 때문에 순차적으로 접근이나 수정은 가능하지만 추가적인 로직을 짜긴 어려움
         for (Department department: Department.values()) {
             System.out.printf("%s[%d], ", department.getDepartmentName(), department.ordinal());
         }

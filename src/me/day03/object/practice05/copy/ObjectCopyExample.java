@@ -5,7 +5,7 @@ import me.day03.object.practice05.compare.Person;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class ObjectCopyExample implements Cloneable {
+public class ObjectCopyExample {
     private int intVariable;
     private String strVariable;
     private Person[] personArray; // deep copy
@@ -70,8 +70,9 @@ public class ObjectCopyExample implements Cloneable {
     public static ObjectCopyExample getNewInstance(ObjectCopyExample origin) {
         ObjectCopyExample objectCopyExample = new ObjectCopyExample();
         objectCopyExample.setIntVariable(origin.intVariable);
-        objectCopyExample.setStrVariable(origin.strVariable);
+        objectCopyExample.setStrVariable(origin.strVariable); // string pool 주소 공유 (?)
 
+        //objectCopyExample.personArray = origin.personArray; // 주소값 공유 (잘못된 복사)
         objectCopyExample.personArray = new Person[origin.personArray.length];
         for (int i = 0; i < objectCopyExample.personArray.length; i++) {
             objectCopyExample.personArray[i] = new Person();

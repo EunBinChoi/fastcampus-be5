@@ -14,6 +14,7 @@ public class ObjectCopyMain {
         ObjectCopyExample objectCopyExample2 = null;
         try {
             objectCopyExample2 = objectCopyExample1.clone();
+            // Cloneable 이라는 인터페이스가 implements 되어있지 않은 객체에 clone()이라는 함수를 쓸 때
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
@@ -32,12 +33,12 @@ public class ObjectCopyMain {
 
         ////////////////////////////////////////////////////////////////////////////////
         // getNewInstance static method 이용
-        ObjectCopyExample objectCopyExample3 = new ObjectCopyExample(10, "abc",
+        ObjectCopyExample objectCopyExample3 = new ObjectCopyExample(10, "abc", // 원본
                 new Person[] {
                         new Person("a", Gender.MALE, "19880101", "19880101-1234567"),
                         new Person("b", Gender.FEMALE, "19900320", "19900320-2345678"),
                         new Person("c", Gender.FEMALE, "19960830", "19960830-2012020")});
-        ObjectCopyExample objectCopyExample4 = ObjectCopyExample.getNewInstance(objectCopyExample3);
+        ObjectCopyExample objectCopyExample4 = ObjectCopyExample.getNewInstance(objectCopyExample3); // 복사본
         objectCopyExample3.getPersonArray()[0].setName("d");
         System.out.println(objectCopyExample3.getPersonArray()[0]);
         System.out.println(objectCopyExample4.getPersonArray()[0]);

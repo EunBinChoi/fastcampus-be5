@@ -2,8 +2,12 @@ package me.day03.object.practice04;
 
 public class Main {
     public static void main(String[] args) {
+//        Clazz clazz = new Clazz();
         Clazz clazz1 = Clazz.getInstance();
         Clazz clazz2 = Clazz.getInstance();
+
+//        Clazz clazz1 = Clazz.instance;
+//        Clazz clazz2 = Clazz.instance;
 
         System.out.print("same address? ");
         System.out.println(clazz1 == clazz2);

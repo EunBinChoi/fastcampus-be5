@@ -1,7 +1,11 @@
 package me.day03.object.practice02;
 
 public enum Position {
-    PRESIDENT("사장"), DIRECTOR("이사"), MANAGER("과장"), SENIOR("주임"), STAFF("사원");
+    PRESIDENT("사장"),
+    DIRECTOR("이사"),
+    MANAGER("과장"),
+    SENIOR("주임"),
+    STAFF("사원");
     private String positionName = null;
 
     // 클래스처럼 사용가능
