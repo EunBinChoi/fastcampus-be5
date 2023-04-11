@@ -4,9 +4,11 @@ import java.util.Arrays;
 
 public class Practice05 {
     enum Order {ASC, DESC}
-    static final int ROW = 5;
-    static final int COL = 3;
     public static void main(String[] args) {
+
+        final int STUDENT_NUM = 5; // row
+        final int SUBJECT_NUM = 3; // col
+
         int[][] scores2d = {
                 { 50,  60,  70},
                 { 60,  76, 100},
@@ -15,88 +17,133 @@ public class Practice05 {
                 {100,  85,  77}
         };
 
-        int[] studentIdx = new int[ROW];
-        for (int i = 0; i < ROW; i++) {
-            studentIdx[i] = i; // 0 ~ 4 {학생번호}
+        // 정렬하기 위해 저장
+        String[] subjectsName = { "국어", "수학", "영어" };
+        int[] subjects = new int[SUBJECT_NUM]; // subject index
+        for (int i = 0; i < subjects.length; i++) {
+            subjects[i] = i; // 0 ~ 2
         }
 
-        String[] subjectName = new String[] {"국어", "수학", "영어"};
-        int[] subjectIdx = new int[COL];
-        for (int i = 0; i < COL; i++) {
-            subjectIdx[i] = i; // 0 ~ 2 {과목번호 {국=0, 수=1, 영=2}}
+        int[] students = new int[STUDENT_NUM]; // student index
+        for (int i = 0; i < students.length; i++) {
+            students[i] = i; // 0 ~ 4
         }
-
-        double[] studentAvgs = averageByStudents(scores2d);
-        double[] subjectAvgs = averageBySubjects(scores2d);
-        System.out.println(Arrays.toString(studentAvgs));
-        System.out.println(Arrays.toString(subjectAvgs));
+        double[] subjectsAverage = calculateSubjectsAverage(scores2d);
+        double[] studentsAverage = calculateStudentsAverage(scores2d);
+        System.out.println("subject's average => " + Arrays.toString(subjectsAverage));
+        System.out.println("student's average => " + Arrays.toString(studentsAverage));
         System.out.println();
 
-        sort(studentAvgs, studentIdx, Order.ASC);
-        System.out.println(Arrays.toString(studentIdx));
-        System.out.println(Arrays.toString(studentAvgs));
+        sort(subjectsAverage, subjects, Order.DESC);
+        System.out.println("[ subject's average by descending order ]");
+        System.out.println("\n-----------------------------------------------");
+        for (int i = 0; i < subjects.length; i++) {
+            System.out.printf("%12s | ", subjectsName[subjects[i]]);
+        }
+        System.out.println("\n-----------------------------------------------");
+        for (int i = 0; i < subjectsAverage.length; i++) {
+            System.out.printf("%12f  | ", subjectsAverage[i]);
+        }
+        System.out.println("\n-----------------------------------------------");
+
         System.out.println();
-
-        sort(subjectAvgs, subjectIdx, Order.ASC);
-        System.out.println(Arrays.toString(subjectIdx));
-        System.out.println(Arrays.toString(subjectAvgs));
-        System.out.println();
-
-        sort(studentAvgs, studentIdx, Order.DESC);
-        System.out.println(Arrays.toString(studentIdx));
-        System.out.println(Arrays.toString(studentAvgs));
-        System.out.println();
-
-        sort(subjectAvgs, subjectIdx, Order.DESC);
-        System.out.println(Arrays.toString(subjectIdx));
-        System.out.println(Arrays.toString(subjectAvgs));
-
+        sort(studentsAverage, students, Order.ASC);
+        System.out.println("[ student's average by ascending order ]");
+        System.out.println("\n--------------------------------------------------------------------------");
+        for (int i = 0; i < students.length; i++) {
+            System.out.printf("%10s  | ", students[i] + 1 + "번 학생");
+        }
+        System.out.println("\n--------------------------------------------------------------------------");
+        for (int i = 0; i < studentsAverage.length; i++) {
+            System.out.printf("%12f | ", studentsAverage[i]);
+        }
+        System.out.println("\n--------------------------------------------------------------------------");
     }
 
-    public static double[] averageByStudents(int[][] scores) {
-        double[] averages = new double[ROW];
-        for (int i = 0; i < ROW; i++) { // 학생 번호
-            double sum = 0;
-            for (int j = 0; j < COL; j++) { // 과목 번호
-                sum += scores[i][j];
+    public static double[] calculateSubjectsAverage(int[][] scores2d) {
+        double[] subjectAverage = new double[scores2d[0].length]; // 각 과목별 학생 성적 평균
+
+        for (int i = 0; i < scores2d[0].length; i++) { // COLUMN
+            int sum = 0;
+            for (int j = 0; j < scores2d.length; j++) { // ROW
+                sum += scores2d[j][i];
             }
-            averages[i] = sum / COL;
+            subjectAverage[i] = (double) sum / scores2d.length;
         }
-        return averages;
-    }
-    public static double[] averageBySubjects(int[][] scores) {
-        double[] averages = new double[COL];
-        for (int i = 0; i < COL; i++) { // 과목 번호
-            double sum = 0;
-            for (int j = 0; j < ROW; j++) { // 학생 번호
-                sum += scores[j][i];
-            }
-            averages[i] = sum / ROW;
-        }
-        return averages;
+        return subjectAverage;
     }
 
-    // {}
-    public static void sort(double[] array, int[] index, Order order) { // comp: 1 (asc), -1 (desc)
+    public static double[] calculateStudentsAverage(int[][] scores2d) {
+        double[] studentsAverage = new double[scores2d.length]; // 각 학생별 과목 성적 평균
+
+        for (int i = 0; i < scores2d.length; i++) { // ROW
+            int sum = 0;
+            for (int j = 0; j < scores2d[0].length; j++) { // COLUMN
+                sum += scores2d[i][j];
+            }
+            studentsAverage[i] = (double) sum / scores2d[0].length;
+        }
+        return studentsAverage;
+    }
+
+    public static int compare(Order order) {
+        return (order == Order.ASC) ? 1 : -1;
+    }
+
+    public static void sort(double[] array, int[] index, Order order) {
+        int comp = compare(order);
+
         // bubble sort
-        // (*) input array에서 부동소수점의 문제로 인한 크기비교 불가는 무시한다.
+        // (10, 20, 5, 1, 2)
+        // ( 0,  1, 2, 3, 4)
 
-        int comp = order == Order.ASC ? 1 : -1;
+        // 1번째 반복문 i == 1
+        // (10, 20, 5, 1, 2)
+        // (10, 5, 20, 1, 2)
+        // (10, 5, 1, 20, 2)
+        // (10, 5, 1, 2, // 20) // 가장 큰 놈이 뒤에 있음
 
-        for (int i = 0; i < array.length-1; i++) {
-            for (int j = 0; j < array.length-i-1; j++) {
-                if ((array[j] - array[j+1]) * comp > 0) {
-                    double tmp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = tmp;
+        // 2번째 반복문 i == 2
+        // (5, 10, 1, 2, // 20)
+        // (5, 1, 10, 2 // 20)
+        // (5, 1, 2, // 10 // 20) // 두번째 큰 놈이 뒤에 있음
 
+        // 3번째 반복문 i == 3
+        // (1, 5, 2, // 10, 20)
+        // (1, 2, // 5, // 10, 20)
+
+        // 4번째 반복문 i == 4
+        // (1, // 2, 5, 10, 20)
+
+        for (int i = array.length - 1; i > 0; i--) { // n 숫자 정렬시 반복해야하는 횟수 -> n - 1
+            for (int j = 0; j < i; j++) {
+                // 오름차순 (array[j] > array[j + 1]) [2, 1] => [1, 2]
+                //        (array[j] - array[j + 1] > 0)
+                // 내림차순 (array[j] < array[j + 1]) [1, 2] => [2, 1]
+                //        (array[j] - array[j + 1] < 0)
+
+
+                /*
+                 * (array[j] - array[j + 1] > 0)
+                 * (array[j] - array[j + 1] (*-1) > 0)
+                 * -array[j] + array[j + 1] > 0
+                 * 0 > array[j] - array[j + 1]
+                 * array[j] - array[j + 1] < 0
+                 * */
+
+                if ((array[j] - array[j + 1]) * comp > 0) {
+                    // swap
+                    double value = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = value;
+
+                    // swap
                     int idx = index[j];
-                    index[j] = index[j+1];
-                    index[j+1] = idx;
+                    index[j] = index[j + 1];
+                    index[j + 1] = idx;
                 }
             }
         }
-
     }
 
 }
