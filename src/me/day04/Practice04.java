@@ -27,9 +27,9 @@ public class Practice04 {
         return max;
     }
     // max: arr[i] - val > 0
-    // min: -(arr[i] - val) < 0
+    // min: -(arr[i] - val) > -0 => -arr[i] + val > 0 => 0 > arr[i] - val => arr[i] - val < 0
 
-    // Sort (package (code))
+    // Sort (package (code): java.util.Timsort)
     public static int minOrMax(int[] arr, Comp compVal) {
         int val = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -43,11 +43,11 @@ public class Practice04 {
     }
 
     public static double average(int[] arr) {
-        int sum = 0;
+        double sum = 0;
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
         }
-        return (double) sum / arr.length;
+        return sum / arr.length;
     }
     public static double variance(int[] arr) {
         double avg = average(arr);
