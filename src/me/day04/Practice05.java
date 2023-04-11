@@ -15,21 +15,21 @@ public class Practice05 {
     // 1. double 평균 구하는 메서드 (일차원 배열)
     // 2. double[] 전체 평균을 구하는 메소드 (이차원 배열)
     public static double average(int[] arr) {
-        int sum = 0;
+        double sum = 0;
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
         }
-        return (double) sum / arr.length;
+        return sum / arr.length;
     }
 
     public static double[] averageByStudents(int[][] scores) {
         double[] averages = new double[ROW];
         for (int i = 0; i < ROW; i++) { // 학생 번호
-            int sum = 0;
+            double sum = 0;
             for (int j = 0; j < COL; j++) { // 과목 번호
                 sum += scores[i][j];
             }
-            averages[i] = (double) sum / COL;
+            averages[i] = sum / COL;
         }
         return averages;
     }
