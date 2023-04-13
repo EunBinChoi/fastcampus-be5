@@ -10,31 +10,23 @@ public class Order {
     private ShoppingCarts shoppingCarts;
     private LocalDateTime orderTime;
     private Integer payment; // with tax
-    private String cardApprovalNumber;
     private Status orderStatus;
 
     private static int AUTO_GEN = 0;
 
-    public Order() {
+    private Order() {
         AUTO_GEN++;
         orderNo = String.format("%08d", AUTO_GEN);
+        shoppingCarts = ShoppingCarts.copyShoppingCartsOfSelected();
         orderTime = LocalDateTime.now(ZoneId.systemDefault());
+        payment = shoppingCarts.getTotalPaymentOfSelected();
         orderStatus = Status.PAY;
     }
 
-    public Order(ShoppingCarts shoppingCarts, String cardApprovalNumber) {
+    public Order(ShoppingCarts shoppingCarts) {
         this();
         this.shoppingCarts = shoppingCarts;
-        this.cardApprovalNumber = cardApprovalNumber;
     }
-
-//    public Integer calculatePayment() {
-//        int totalPayment = 0;
-//        for (int i = 0; i < shoppingCarts.size(); i++) {
-//            totalPayment += shoppingCarts.get(i).getShoppingItem().getPrice();
-//        }
-//        return totalPayment;
-//    }
 
     public String getOrderNo() {
         return orderNo;
@@ -68,20 +60,12 @@ public class Order {
         this.payment = payment;
     }
 
-    public String getCardApprovalNumber() {
-        return cardApprovalNumber;
-    }
-
-    public void setCardApprovalNumber(String cardApprovalNumber) {
-        this.cardApprovalNumber = cardApprovalNumber;
-    }
-
-    public Status getorderStatus() {
+    public Status getOrderStatus() {
         return orderStatus;
     }
 
-    public void setorderStatus(Status orderStatus) {
-        orderStatus = orderStatus;
+    public void setOrderStatus(Status orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     @Override
@@ -89,12 +73,12 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(orderNo, order.orderNo) && Objects.equals(shoppingCarts, order.shoppingCarts) && Objects.equals(orderTime, order.orderTime) && Objects.equals(payment, order.payment) && Objects.equals(cardApprovalNumber, order.cardApprovalNumber) && orderStatus == order.orderStatus;
+        return Objects.equals(orderNo, order.orderNo) && Objects.equals(shoppingCarts, order.shoppingCarts) && Objects.equals(orderTime, order.orderTime) && Objects.equals(payment, order.payment) && orderStatus == order.orderStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderNo, shoppingCarts, orderTime, payment, cardApprovalNumber, orderStatus);
+        return Objects.hash(orderNo, shoppingCarts, orderTime, payment, orderStatus);
     }
 
     @Override
@@ -104,7 +88,6 @@ public class Order {
                 ", shoppingCarts=" + shoppingCarts +
                 ", orderTime=" + orderTime +
                 ", payment=" + payment +
-                ", cardApprovalNumber='" + cardApprovalNumber + '\'' +
                 ", orderStatus=" + orderStatus +
                 '}';
     }

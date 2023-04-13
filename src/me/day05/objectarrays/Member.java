@@ -15,7 +15,7 @@ public class Member {
     private LocalDateTime signupTime; // system time
     private Authority authority;
 
-    public Member() {
+    private Member() {
         signupTime = LocalDateTime.now(ZoneId.systemDefault());
         authority = Authority.USER;
     }
@@ -98,6 +98,7 @@ public class Member {
     public void setAuthority(Authority authority) {
         this.authority = authority;
     }
+
 
     @Override
     public boolean equals(Object o) {

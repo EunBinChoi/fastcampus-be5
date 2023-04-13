@@ -1,6 +1,8 @@
 package me.day05.objectarrays;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Objects;
 
 public class ShoppingCart {
 
@@ -8,21 +10,30 @@ public class ShoppingCart {
     private ShoppingItem shoppingItem;
     private Integer quantity;
     private LocalDateTime shoppingTime;
-    private Boolean isOrder;
+    private Boolean isSelected;
+    private Boolean isOrdered;
 
     private static int AUTO_GEN = 0;
 
     public ShoppingCart() {
         AUTO_GEN++;
         shoppingCartNo = String.format("%08d", AUTO_GEN);
+        shoppingTime = LocalDateTime.now(ZoneId.systemDefault());
+        isSelected = true;
+        isOrdered  = false;
     }
 
-    public ShoppingCart(String shoppingCartNo, ShoppingItem shoppingItem, Integer quantity, LocalDateTime shoppingTime, Boolean isOrder) {
+    public ShoppingCart(ShoppingItem shoppingItem) {
+        this();
+        this.shoppingItem = shoppingItem;
+        this.quantity = 1;
+    }
+
+
+    public ShoppingCart(ShoppingItem shoppingItem, Integer quantity) {
         this();
         this.shoppingItem = shoppingItem;
         this.quantity = quantity;
-        this.shoppingTime = shoppingTime;
-        this.isOrder = isOrder;
     }
 
     public String getShoppingCartNo() {
@@ -57,11 +68,44 @@ public class ShoppingCart {
         this.shoppingTime = shoppingTime;
     }
 
-    public Boolean getOrder() {
-        return isOrder;
+    public Boolean getSelected() {
+        return isSelected;
     }
 
-    public void setOrder(Boolean order) {
-        isOrder = order;
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
+    }
+
+    public Boolean getOrdered() {
+        return isOrdered;
+    }
+
+    public void setOrdered(Boolean ordered) {
+        isOrdered = ordered;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingCart that = (ShoppingCart) o;
+        return Objects.equals(shoppingCartNo, that.shoppingCartNo) && Objects.equals(shoppingItem, that.shoppingItem) && Objects.equals(quantity, that.quantity) && Objects.equals(shoppingTime, that.shoppingTime) && Objects.equals(isSelected, that.isSelected) && Objects.equals(isOrdered, that.isOrdered);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shoppingCartNo, shoppingItem, quantity, shoppingTime, isSelected, isOrdered);
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "shoppingCartNo='" + shoppingCartNo + '\'' +
+                ", shoppingItem=" + shoppingItem +
+                ", quantity=" + quantity +
+                ", shoppingTime=" + shoppingTime +
+                ", isSelected=" + isSelected +
+                ", isOrdered=" + isOrdered +
+                '}';
     }
 }

@@ -1,11 +1,40 @@
 package me.day05.objectarrays;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Objects;
+
 public class ShoppingItem {
+    enum Category {OUTDOOR, TOP, BOTTOM, INNER, ACCESSORY}
     private String itemId; // sequential generated
     private String itemName;
-    private String category;
+    private Category category;
     private Integer price;
     private String details;
+
+    private LocalDateTime registerTime;
+    private static int AUTO_GEN = 0;
+
+    private ShoppingItem() {
+        AUTO_GEN++;
+        itemId = String.format("%08d", AUTO_GEN);
+        registerTime = LocalDateTime.now(ZoneId.systemDefault());
+    }
+
+    public ShoppingItem(String itemName, Category category, Integer price) {
+        this();
+        this.itemName = itemName;
+        this.category = category;
+        this.price = price;
+    }
+
+    public ShoppingItem(String itemName, Category category, Integer price, String details) {
+        this();
+        this.itemName = itemName;
+        this.category = category;
+        this.price = price;
+        this.details = details;
+    }
 
     public String getItemId() {
         return itemId;
@@ -23,11 +52,11 @@ public class ShoppingItem {
         this.itemName = itemName;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -45,5 +74,30 @@ public class ShoppingItem {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingItem that = (ShoppingItem) o;
+        return Objects.equals(itemId, that.itemId) && Objects.equals(itemName, that.itemName) && Objects.equals(category, that.category) && Objects.equals(price, that.price) && Objects.equals(details, that.details) && Objects.equals(registerTime, that.registerTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemId, itemName, category, price, details, registerTime);
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingItem{" +
+                "itemId='" + itemId + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", details='" + details + '\'' +
+                ", registerTime=" + registerTime +
+                '}';
     }
 }

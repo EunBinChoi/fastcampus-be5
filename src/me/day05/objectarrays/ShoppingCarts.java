@@ -1,6 +1,7 @@
 package me.day05.objectarrays;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class ShoppingCarts {
     // singleton
@@ -26,18 +27,23 @@ public class ShoppingCarts {
         capacity = initial;
     }
 
-    public ShoppingCarts(ShoppingCart[] shoppingCarts) {
+    private ShoppingCarts(ShoppingCart[] shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
         capacity = shoppingCarts.length;
         size = shoppingCarts.length;
     }
 
-    public ShoppingCart[] getShoppingCarts() {
+    private ShoppingCart[] getShoppingCarts() {
         return shoppingCarts;
     }
 
-    public void setShoppingCarts(ShoppingCart[] shoppingCarts) {
-        this.shoppingCarts = shoppingCarts;
+
+    public int getSize() {
+        return size;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     public int size() {
@@ -167,6 +173,30 @@ public class ShoppingCarts {
 
         return new ShoppingCarts(newShoppingCarts);
     }
+
+    public Order order() {
+        ShoppingCarts selectedOrder = copyShoppingCartsOfSelected();
+        for (int i = 0; i < selectedOrder.size; i++) {
+            selectedOrder.get(i).setOrdered(true);
+        }
+        return new Order(selectedOrder);
+    }
+
+    public Integer getTotalPaymentOfSelected() {
+        int totals = 0;
+        for (int i = 0; i < allShoppingCarts.size(); i++) {
+            ShoppingCart shoppingCart = allShoppingCarts.get(i);
+            if (shoppingCart.getSelected()) {
+                totals += shoppingCart.getShoppingItem().getPrice();
+            }
+        }
+        return totals;
+    }
+
+    public static ShoppingCarts copyShoppingCartsOfSelected() {
+        return new ShoppingCarts(allShoppingCarts.getShoppingCarts());
+    }
+
 
 
 
