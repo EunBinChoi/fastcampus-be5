@@ -74,7 +74,7 @@ public class Members {
             if (members[i] == null) continue;
             if (members[i].equals(member)) return i;
         }
-        return -1;
+        return -1; // not found
     }
 
     // 배열의 cap이 부족한 경우
@@ -126,10 +126,19 @@ public class Members {
         return popElement;
     }
 
-    public void grow() {
+    private void grow() {
         capacity *= 2;
         members = Arrays.copyOf(members, capacity);
 
         // size는 그대로임
+    }
+
+    @Override
+    public String toString() {
+        String toStr = "";
+        for (int i = 0; i < size; i++) {
+            toStr += (members[i] + "\n");
+        }
+        return toStr;
     }
 }
