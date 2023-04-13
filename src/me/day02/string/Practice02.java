@@ -24,6 +24,7 @@ public class Practice02 {
                 }
             }
             System.out.println(ans);
+            scanner.close();
         }
 
     }

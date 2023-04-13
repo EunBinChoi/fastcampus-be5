@@ -23,5 +23,6 @@ public class Practice01 {
             }
         }
         System.out.println(newMessage);
+        scanner.close();
     }
 }

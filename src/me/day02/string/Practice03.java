@@ -13,5 +13,7 @@ public class Practice03 {
 
 //        String[] splits = sentence.split(" ");
 //        System.out.println(splits.length);
+
+        scanner.close();
     }
 }

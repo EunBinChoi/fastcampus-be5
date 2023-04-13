@@ -11,5 +11,7 @@ public class Practice04 {
         String str2 = new StringBuilder(scanner.next()).reverse().toString();
         String answer = str1.compareTo(str2) > 0 ? str1 : str2;
         System.out.println(answer);
+
+        scanner.close();
     }
 }
