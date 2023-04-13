@@ -3,10 +3,10 @@ package me.day05.review.practice06;
 public class Main {
     static final int DEFAULT = 10;
     public static void main(String[] args) {
-        Clazz[] clazzes = new Clazz[DEFAULT];
+        Clazz[] clazzes = new Clazz[DEFAULT]; // 배열 생성
 
         for (int i = 0; i < clazzes.length; i++) {
-            clazzes[i] = new Clazz(); // 매번 새로운 a, b가 생김
+            clazzes[i] = new Clazz(); // i번째 원소에 실제 객체를 만듦 // 매번 새로운 a, b가 생김
             System.out.println(clazzes[i]);
         }
         System.out.println();

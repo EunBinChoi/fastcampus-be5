@@ -8,9 +8,9 @@ public class Clazz {
     private char c;
     private String s;
 
-    public Clazz() {}
+    public Clazz() {} // noArgumentConstructor
 
-    public Clazz(int a, double b, char c, String s) {
+    public Clazz(int a, double b, char c, String s) { // allArgumentConstructor
         this.a = a;
         this.b = b;
         this.c = c;
@@ -18,8 +18,8 @@ public class Clazz {
     }
 
     // 1. setter&getter가 필요한 이유가 무엇인지 서술하시오.
-    // - setter: public이 아닌 접근제어자로 정의된 필드값을 수정하기 위함
-    // - getter: public이 아닌 접근제어자로 정의된 필드값을 반환하기 위함
+    // - setter: public이 아닌 접근제어자로 정의된 필드값을 외부에서 수정하기 위함
+    // - getter: public이 아닌 접근제어자로 정의된 필드값을 외부에서 반환하기 위함
     // 2. setter&getter가 없고 각 필드의 접근제어자가 `public`이면 어떤 문제가 생길 수 있는지 서술하시오.
     // - public이면 외부 클래스에서 필드를 임의로 수정할 수 있어 정보보호를 할 수 없음
     // - 외부에서 임의로 필드값을 수정하면 알고 있던 값이 아닌 이상한 값이 들어가 있을 수 있음 (내부에서 관리할 수 있는 방법이 없음, public이라 모두 접근 가능)
@@ -63,6 +63,9 @@ public class Clazz {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Clazz clazz = (Clazz) o;
+
+        // double: value
+        // Double class: field + method
         return a == clazz.a && Double.compare(clazz.b, b) == 0 && c == clazz.c && Objects.equals(s, clazz.s);
     }
 
@@ -79,7 +82,7 @@ public class Clazz {
     // - toString() 없이 객체변수를 출력하면 객체의 고유 ID 값이 나오는데 (객체변수에는 주소가 들어가있음, 주소 대신 사용하는 ID)
     // - 보통 우리가 변수를 출력한다는 것은 변수에 저장된 값이 궁금한 것이니까 값을 출력하기 위함
     @Override
-    public String toString() {
+    public String toString() { // sysout(new Clazz())
         return "Clazz{" +
                 "a=" + a +
                 ", b=" + b +

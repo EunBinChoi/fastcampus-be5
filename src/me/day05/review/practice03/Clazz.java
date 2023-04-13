@@ -15,8 +15,8 @@ public class Clazz {
     * - @Override는 해당 클래스의 부모 클래스에서 동일한 메소드가 있는지 확인하는데 Clazz 클래스 같은 경우 Object 클래스가 부모 클래스이고 Object 클래스에는 toSting()이 없기 떄문
     * */
 
-//    @Override
-    public String toSting() {
+    @Override
+    public String toString() {
         return "Clazz{" +
                 "a='" + a + '\'' +
                 ", b='" + b + '\'' +

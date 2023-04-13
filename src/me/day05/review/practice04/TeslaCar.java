@@ -4,7 +4,7 @@ public class TeslaCar { // 테슬라 자동차만 만드는 공장
     private String ID;
     private String modelName;
     private String color;
-    private static final String BRAND = "Tesla";
+    private static final String BRAND = "Tesla"; // static
 
     public TeslaCar() {}
 
@@ -14,6 +14,7 @@ public class TeslaCar { // 테슬라 자동차만 만드는 공장
         this.color = color;
     }
 
+    // static
     public static String getBrand() {
         return TeslaCar.BRAND;
     }

@@ -1,7 +1,6 @@
 package me.day05.objectarrays;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class ShoppingCarts {
     // singleton
