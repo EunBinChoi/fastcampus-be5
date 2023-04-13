@@ -10,7 +10,16 @@ class Solution1 {
         for (int i = 0; i < n; i++) {
             // 5 => 00101
 
+            // decimal => binary
             String binaryString = Long.toBinaryString(arr1[i] | arr2[i]); // 비트 연산
+            // arr1[i]: 16bit
+            // arr2[i]: 16bit
+            // arr1[i] | arr2[i]: 16bit
+            // long: 64bit
+            // String: "1111111111111111" => 16byte
+
+            // 10010 | 01101 => "11111"
+
 //            System.out.println(binaryString.getBytes().length); // 16 바이트
 
             binaryString = String.format("%" + n + "s", binaryString);
@@ -30,6 +39,12 @@ class Solution2 {
 
         for (int i = 0; i < n; i++) {
             String binaryString = Integer.toBinaryString(arr1[i] | arr2[i]); // 비트 연산
+            // arr1[i]: 16bit
+            // arr2[i]: 16bit
+            // arr1[i] | arr2[i]: 16bit
+            // int: 32bit
+            // String: "1111111111111111" => 16byte
+
 //            System.out.println(binaryString.getBytes().length); // 16 바이트
 
 //            System.out.println(binaryString);

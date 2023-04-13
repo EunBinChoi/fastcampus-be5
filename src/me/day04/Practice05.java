@@ -34,9 +34,13 @@ public class Practice05 {
         System.out.println("student's average => " + Arrays.toString(studentsAverage));
         System.out.println();
 
+        // subjectsAverage, subjects
+        // call by reference: 참조자 (c++) (X)
+        // call by (address) value
         sort(subjectsAverage, subjects, Order.DESC);
         System.out.println("[ subject's average by descending order ]");
         System.out.println("\n-----------------------------------------------");
+        System.out.println(Arrays.toString(subjects));
         for (int i = 0; i < subjects.length; i++) {
             System.out.printf("%12s | ", subjectsName[subjects[i]]);
         }
@@ -49,6 +53,7 @@ public class Practice05 {
         System.out.println();
         sort(studentsAverage, students, Order.ASC);
         System.out.println("[ student's average by ascending order ]");
+        System.out.println(Arrays.toString(students));
         System.out.println("\n--------------------------------------------------------------------------");
         for (int i = 0; i < students.length; i++) {
             System.out.printf("%10s  | ", students[i] + 1 + "번 학생");
@@ -138,7 +143,7 @@ public class Practice05 {
                     array[j + 1] = value;
 
                     // swap
-                    int idx = index[j];
+                    int idx = index[j]; // 학생번호, 과목번호 (국, 수, 영)
                     index[j] = index[j + 1];
                     index[j + 1] = idx;
                 }
