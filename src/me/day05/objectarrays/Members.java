@@ -90,11 +90,40 @@ public class Members {
 
     public void add(int index, Member member) {
         if (size < capacity) {
-
+            for (int i = size-1; i >= index ; i--) {
+                members[i+1] = members[i];
+            }
+            members[index] = member;
+            size++;
         } else {
             grow();
             add(index, member);
         }
+    }
+
+    public Member pop() {
+//        if (size == 0) return null;
+//
+//        Member popElement = members[size-1];
+//        members[size-1] = null;
+//        size--;
+//        return popElement;
+        return pop(size-1);
+    }
+
+    public Member pop(int index) {
+        if (size == 0) return null;
+        if (index < 0 || index >= size) return null;
+
+        Member popElement = members[index];
+        members[index] = null; // 삭제됨을 명시적으로 표현
+
+        for (int i = index+1; i < size; i++) {
+            members[i-1] = members[i];
+        }
+        members[size-1] = null;
+        size--;
+        return popElement;
     }
 
     public void grow() {
