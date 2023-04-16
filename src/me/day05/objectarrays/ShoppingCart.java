@@ -5,15 +5,14 @@ import java.time.ZoneId;
 import java.util.Objects;
 
 public class ShoppingCart {
-
-    private String shoppingCartNo; // auto-generated
+    private String shoppingCartNo;
     private ShoppingItem shoppingItem;
     private Integer quantity;
     private LocalDateTime shoppingTime;
     private Boolean isSelected;
     private Boolean isOrdered;
 
-    private static int AUTO_GEN = 0;
+    private static int AUTO_GEN = 0; // auto-generator.
 
     public ShoppingCart() {
         AUTO_GEN++;
@@ -23,12 +22,15 @@ public class ShoppingCart {
         isOrdered  = false;
     }
 
+    public ShoppingCart(String shoppingCartNo) {
+        this.shoppingCartNo = shoppingCartNo;
+    }
+
     public ShoppingCart(ShoppingItem shoppingItem) {
         this();
         this.shoppingItem = shoppingItem;
         this.quantity = 1;
     }
-
 
     public ShoppingCart(ShoppingItem shoppingItem, Integer quantity) {
         this();
@@ -89,12 +91,12 @@ public class ShoppingCart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCart that = (ShoppingCart) o;
-        return Objects.equals(shoppingCartNo, that.shoppingCartNo) && Objects.equals(shoppingItem, that.shoppingItem) && Objects.equals(quantity, that.quantity) && Objects.equals(shoppingTime, that.shoppingTime) && Objects.equals(isSelected, that.isSelected) && Objects.equals(isOrdered, that.isOrdered);
+        return Objects.equals(shoppingCartNo, that.shoppingCartNo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(shoppingCartNo, shoppingItem, quantity, shoppingTime, isSelected, isOrdered);
+        return Objects.hash(shoppingCartNo);
     }
 
     @Override

@@ -15,10 +15,18 @@ public class ShoppingItem {
     private LocalDateTime registerTime;
     private static int AUTO_GEN = 0;
 
-    private ShoppingItem() {
+    private void autoGenerator() {
         AUTO_GEN++;
+    }
+
+    private ShoppingItem() {
+        autoGenerator();
         itemId = String.format("%08d", AUTO_GEN);
         registerTime = LocalDateTime.now(ZoneId.systemDefault());
+    }
+
+    public ShoppingItem(String itemId) {
+        this.itemId = itemId;
     }
 
     public ShoppingItem(String itemName, Category category, Integer price) {
@@ -81,12 +89,12 @@ public class ShoppingItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingItem that = (ShoppingItem) o;
-        return Objects.equals(itemId, that.itemId) && Objects.equals(itemName, that.itemName) && Objects.equals(category, that.category) && Objects.equals(price, that.price) && Objects.equals(details, that.details) && Objects.equals(registerTime, that.registerTime);
+        return Objects.equals(itemId, that.itemId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, itemName, category, price, details, registerTime);
+        return Objects.hash(itemId);
     }
 
     @Override

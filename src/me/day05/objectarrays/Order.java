@@ -6,7 +6,9 @@ import java.util.Objects;
 
 public class Order {
     enum Status {PAY, READY_TO_DELIVERY, DELIVERY, FINISH_DELIVERY, EXCHANGE, REFUND}
-    private String orderNo; // auto-generated
+    private String orderNo;
+    private String orderAddress;
+
     private ShoppingCarts shoppingCarts;
     private LocalDateTime orderTime;
     private Integer payment; // with tax
@@ -17,14 +19,23 @@ public class Order {
     private Order() {
         AUTO_GEN++;
         orderNo = String.format("%08d", AUTO_GEN);
-        shoppingCarts = ShoppingCarts.copyShoppingCartsOfSelected();
         orderTime = LocalDateTime.now(ZoneId.systemDefault());
-        payment = shoppingCarts.getTotalPaymentOfSelected();
         orderStatus = Status.PAY;
+    }
+
+    public Order(String orderAddress) {
+        this();
+        this.orderAddress = orderAddress;
     }
 
     public Order(ShoppingCarts shoppingCarts) {
         this();
+        this.shoppingCarts = shoppingCarts;
+    }
+
+    public Order(String orderAddress, ShoppingCarts shoppingCarts) {
+        this();
+        this.orderAddress = orderAddress;
         this.shoppingCarts = shoppingCarts;
     }
 
@@ -34,6 +45,14 @@ public class Order {
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public String getOrderAddress() {
+        return orderAddress;
+    }
+
+    public void setOrderAddress(String orderAddress) {
+        this.orderAddress = orderAddress;
     }
 
     public ShoppingCarts getShoppingCarts() {
@@ -73,18 +92,19 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(orderNo, order.orderNo) && Objects.equals(shoppingCarts, order.shoppingCarts) && Objects.equals(orderTime, order.orderTime) && Objects.equals(payment, order.payment) && orderStatus == order.orderStatus;
+        return Objects.equals(orderNo, order.orderNo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderNo, shoppingCarts, orderTime, payment, orderStatus);
+        return Objects.hash(orderNo);
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "orderNo='" + orderNo + '\'' +
+                ", orderAddress='" + orderAddress + '\'' +
                 ", shoppingCarts=" + shoppingCarts +
                 ", orderTime=" + orderTime +
                 ", payment=" + payment +

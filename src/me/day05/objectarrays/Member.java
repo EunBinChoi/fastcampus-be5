@@ -12,12 +12,22 @@ public class Member {
     private String mPw;
     private String mEmail;
     private String mAddress;
+
+    private ShoppingCarts shoppingCarts;
+    private Orders orders;
     private LocalDateTime signupTime; // system time
     private Authority authority;
 
+
     private Member() {
+        shoppingCarts = new ShoppingCarts();
+        orders = new Orders();
         signupTime = LocalDateTime.now(ZoneId.systemDefault());
         authority = Authority.USER;
+    }
+
+    public Member(String mId) {
+        this.mId = mId;
     }
 
     public Member(String mId, String mPw) {
@@ -43,6 +53,7 @@ public class Member {
     }
 
     public Member(String mId, String mPw, String mEmail, String mAddress, Authority authority) {
+        this();
         this.mId = mId;
         this.mPw = mPw;
         this.mEmail = mEmail;
@@ -83,6 +94,22 @@ public class Member {
         this.mAddress = mAddress;
     }
 
+    public ShoppingCarts getShoppingCarts() {
+        return shoppingCarts;
+    }
+
+    public void setShoppingCarts(ShoppingCarts shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
+    }
+
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
     public LocalDateTime getSignupTime() {
         return signupTime;
     }
@@ -99,18 +126,53 @@ public class Member {
         this.authority = authority;
     }
 
+    public void cart(ShoppingItem shoppingItem) {
+        shoppingCarts.add(new ShoppingCart(shoppingItem, 1));
+    }
+
+    public void cart(ShoppingItem shoppingItem, int quantity) {
+        shoppingCarts.add(new ShoppingCart(shoppingItem, quantity));
+    }
+
+    public void cancelCart(String shoppingCartNo) {
+        int idx = shoppingCarts.indexOf(new ShoppingCart(shoppingCartNo));
+        shoppingCarts.pop(idx);
+    }
+
+    public void order() {
+        orders.add(shoppingCarts.ordered(mAddress));
+    }
+
+    public void order(String address) {
+        orders.add(shoppingCarts.ordered(address));
+    }
+
+    public void order(ShoppingItem shoppingItem) {
+        cart(shoppingItem);
+        order();
+    }
+
+    public void order(ShoppingItem shoppingItem, int quantity) {
+        cart(shoppingItem, quantity);
+        order();
+    }
+
+    public void order(ShoppingItem shoppingItem, int quantity, String address) {
+        cart(shoppingItem, quantity);
+        order(address);
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Member member = (Member) o;
-        return Objects.equals(mId, member.mId) && Objects.equals(mPw, member.mPw) && Objects.equals(mEmail, member.mEmail) && Objects.equals(mAddress, member.mAddress) && Objects.equals(signupTime, member.signupTime) && authority == member.authority;
+        return Objects.equals(mId, member.mId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mId, mPw, mEmail, mAddress, signupTime, authority);
+        return Objects.hash(mId);
     }
 
     @Override
@@ -120,6 +182,8 @@ public class Member {
                 ", mPw='" + mPw + '\'' +
                 ", mEmail='" + mEmail + '\'' +
                 ", mAddress='" + mAddress + '\'' +
+                ", shoppingCarts=" + shoppingCarts +
+                ", orders=" + orders +
                 ", signupTime=" + signupTime +
                 ", authority=" + authority +
                 '}';

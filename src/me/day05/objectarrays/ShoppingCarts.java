@@ -1,89 +1,58 @@
 package me.day05.objectarrays;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class ShoppingCarts {
-    // singleton
-    private static ShoppingCarts allShoppingCarts;
-    public static ShoppingCarts getInstance() {
-        if (allShoppingCarts == null) {
-            allShoppingCarts = new ShoppingCarts();
-        }
-        return allShoppingCarts;
-    }
+    // not singleton class
+    // 각각의 Member가 다른 ShoppingCarts 공간을 가져야하기 때문
 
     private ShoppingCart[] shoppingCarts;
     private static final int DEFAULT = 10;
     private int size;
     private int capacity;
 
-    private ShoppingCarts() {
+    public ShoppingCarts() {
         shoppingCarts = new ShoppingCart[DEFAULT];
         capacity = DEFAULT;
     }
-    private ShoppingCarts(int initial) {
+
+    public ShoppingCarts(int initial) {
         shoppingCarts = new ShoppingCart[initial];
         capacity = initial;
     }
 
-    private ShoppingCarts(ShoppingCart[] shoppingCarts) {
+    public ShoppingCarts(ShoppingCart[] shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
         capacity = shoppingCarts.length;
         size = shoppingCarts.length;
     }
 
-    private ShoppingCart[] getShoppingCarts() {
+    public ShoppingCart[] getShoppingCarts() {
         return shoppingCarts;
     }
 
-
-    public int getSize() {
-        return size;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
+    /////////////////////////////////////////
+    // add, set, get, pop, indexOf, size, capacity (for dynamic-sized array)
     public int size() {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int capacity() {
+    private int capacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
 
-    private boolean isNull() {
-        return shoppingCarts == null;
-    }
-
-    private boolean isEmpty() {
-        return size == 0;
-    }
-
-    private boolean isValid(int index) {
-        if (index < 0 || index > size) return false;
-        return true;
+    public ShoppingCart get(int index) {
+        if (index < 0 || index >= size) return null;
+        return shoppingCarts[index];
     }
 
     public void set(int index, ShoppingCart shoppingCart) {
-        if (isValid(index)) return;
+        if (index < 0 || index >= size) return;
         if (shoppingCart == null) return;
 
         shoppingCarts[index] = shoppingCart;
-    }
-
-    public ShoppingCart get(int index) {
-        if (isValid(index)) return null;
-        return shoppingCarts[index];
     }
 
     public int indexOf(ShoppingCart shoppingCart) {
@@ -100,7 +69,7 @@ public class ShoppingCarts {
         if (shoppingCart == null) return;
 
         if (size < capacity) {
-            shoppingCarts[size] =shoppingCart;
+            shoppingCarts[size] = shoppingCart;
             size++;
         } else {
             grow();
@@ -109,7 +78,7 @@ public class ShoppingCarts {
     }
 
     public void add(int index, ShoppingCart shoppingCart) {
-        if (isValid(index)) return;
+        if (index < 0 || index >= size) return;
         if (shoppingCart == null) return;
 
         if (size < capacity) {
@@ -125,86 +94,96 @@ public class ShoppingCarts {
         }
     }
 
-    public void grow() {
-        ShoppingCart[] copied = Arrays.copyOf(shoppingCarts, shoppingCarts.length);
-        capacity *= 2; // doubling.
-        shoppingCarts = new ShoppingCart[capacity];
 
-        System.arraycopy(copied, 0, shoppingCarts, 0, copied.length);
-        size = copied.length;
+    public ShoppingCart pop() {
+        return pop(size-1);
     }
 
+    public ShoppingCart pop(int index) {
+        if (size == 0) return null;
+        if (index < 0 || index >= size) return null;
 
-    public void pop(int index) {
-        if (size == 0) return;
-        if (!(index >= 0 && index < size)) return;
+        ShoppingCart popElement = shoppingCarts[index];
+        shoppingCarts[index] = null; // 삭제됨을 명시적으로 표현
 
-        shoppingCarts[index] = null; // 명시적으로 원소 삭제되었다고 표시하기 위함 (어차피 i + 1에 의해 덮어씌워짐)
-
-        for (int j = index + 1; j < size; j++) {
-            shoppingCarts[j - 1] = shoppingCarts[j];
+        for (int i = index+1; i < size; i++) {
+            shoppingCarts[i-1] = shoppingCarts[i];
         }
-
-        shoppingCarts[size - 1] = null;
+        shoppingCarts[size-1] = null;
         size--;
+        return popElement;
     }
 
-    public void pop() {
-        if (size == 0) return;
 
-        shoppingCarts[size - 1] = null;
-        size--;
+    public ShoppingCart pop(ShoppingCart shoppingCart) {
+        return pop(indexOf(shoppingCart));
     }
 
-    public void pop(ShoppingCart shoppingCart) {
-        if (size == 0) return;
-        if (shoppingCart == null) return;
+    public void grow() {
+        capacity *= 2; // doubling
+        shoppingCarts = Arrays.copyOf(shoppingCarts, capacity);
 
-        pop(indexOf(shoppingCart));
+        // size는 그대로
     }
 
-    public ShoppingCarts trimToSize() { // 실제 객체 수만큼 객체 배열의 크기를 변경
-        ShoppingCart[] newShoppingCarts = new ShoppingCart[size];
-        System.arraycopy(shoppingCarts, 0, newShoppingCarts, 0, size);
-
-        shoppingCarts = newShoppingCarts;
+    // NEW: 실제 객체 수만큼 객체 배열의 크기를 변경
+    public ShoppingCarts trimToSize() {
+        shoppingCarts = Arrays.copyOf(shoppingCarts, size);
         capacity = size;
 
-        return new ShoppingCarts(newShoppingCarts);
+        return new ShoppingCarts(shoppingCarts);
     }
+    /////////////////////////////////////////
 
-    public Order order() {
-        ShoppingCarts selectedOrder = copyShoppingCartsOfSelected();
-        for (int i = 0; i < selectedOrder.size; i++) {
-            selectedOrder.get(i).setOrdered(true);
-        }
-        return new Order(selectedOrder);
-    }
+    public Order ordered(String address) {
+        if (size == 0) return null;
 
-    public Integer getTotalPaymentOfSelected() {
-        int totals = 0;
-        for (int i = 0; i < allShoppingCarts.size(); i++) {
-            ShoppingCart shoppingCart = allShoppingCarts.get(i);
-            if (shoppingCart.getSelected()) {
-                totals += shoppingCart.getShoppingItem().getPrice();
+        ShoppingCarts ordered = new ShoppingCarts();
+        int total = 0;
+        for (int i = 0; i < size; i++) {
+            if (shoppingCarts[i].getSelected()) {
+                ordered.add(shoppingCarts[i]);
+                total += (shoppingCarts[i].getShoppingItem().getPrice() * shoppingCarts[i].getQuantity());
+
+                shoppingCarts[i].setOrdered(true);
             }
         }
-        return totals;
+
+        Order order = new Order(address, ordered);
+        order.setPayment(total);
+
+        removeOrderedItems();
+        return order;
     }
 
-    public static ShoppingCarts copyShoppingCartsOfSelected() {
-        return new ShoppingCarts(allShoppingCarts.getShoppingCarts());
+    private void removeOrderedItems() {
+        if (size == 0) return;
+
+        for (int i = size-1; i >= 0; i--) {
+            if (shoppingCarts[i].getOrdered()) pop(shoppingCarts[i]);
+        }
     }
 
+    enum Sort {ASC, DESC}
 
+    public void sortByTime(Sort sortMethod) {
+        int comp = (sortMethod == Sort.ASC) ? 1 : -1;
+        Arrays.sort(shoppingCarts, new Comparator<ShoppingCart>() {
+            @Override
+            public int compare(ShoppingCart o1, ShoppingCart o2) {
+                return comp*(o1.getShoppingTime().compareTo(o2.getShoppingTime()));
+            }
+        });
+    }
 
 
     @Override
     public String toString() {
-        return "ShoppingCarts{" +
-                "shoppingCarts=" + Arrays.toString(shoppingCarts) +
-                ", size=" + size +
-                ", capacity=" + capacity +
-                '}';
+        String toStr = "";
+        for (int i = 0; i < size; i++) {
+            toStr += (shoppingCarts[i] + "\n");
+        }
+        return toStr;
     }
+
 }
