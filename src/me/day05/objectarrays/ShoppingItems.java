@@ -210,8 +210,8 @@ public class ShoppingItems {
         if (itemName == null) return null;
 
         for (int i = 0; i < size; i++) {
-            if (shoppingItems[i] == null) return null;
-            if (shoppingItems[i].getItemName() == null) return null;
+            if (shoppingItems[i] == null) continue;
+            if (shoppingItems[i].getItemName() == null) continue;
             if (shoppingItems[i].getItemName().equals(itemName)) return shoppingItems[i];
         }
         return null;
@@ -222,8 +222,8 @@ public class ShoppingItems {
 
         ShoppingItems groups = new ShoppingItems();
         for (int i = 0; i < size; i++) {
-            if (shoppingItems[i] == null) return null;
-            if (shoppingItems[i].getCategory() == null) return null;
+            if (shoppingItems[i] == null) continue;
+            if (shoppingItems[i].getCategory() == null) continue;
             if (shoppingItems[i].getCategory() == category) groups.add(shoppingItems[i]);
         }
         return (groups.size == 0) ? null : groups;
@@ -239,7 +239,7 @@ public class ShoppingItems {
 
         ShoppingItems groups = new ShoppingItems();
         for (int i = 0; i < size; i++) {
-            if (shoppingItems[i] == null) return null;
+            if (shoppingItems[i] == null) continue;
             if (shoppingItems[i].getPrice() >= start && shoppingItems[i].getPrice() < end) {
                 groups.add(shoppingItems[i]);
             }

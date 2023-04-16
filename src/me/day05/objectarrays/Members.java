@@ -25,12 +25,13 @@ public class Members {
         members = new Member[DEFAULT];
         capacity = DEFAULT;
     }
-    private Members(int initial) {
+
+    public Members(int initial) {
         members = new Member[initial];
         capacity = initial;
     }
 
-    private Members(Member[] members) { //  new Member[] {new Member(), new Member(), new Member(), new Member()}
+    public Members(Member[] members) {
         this.members = members;
         capacity = members.length;
         size = members.length;

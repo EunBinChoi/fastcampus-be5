@@ -85,7 +85,6 @@ public class ShoppingCarts {
             for (int i = shoppingCarts.length-1; i >= index; i--) {
                 shoppingCarts[i+1] = shoppingCarts[i];
             }
-
             shoppingCarts[index] = shoppingCart;
             size++;
         } else {
