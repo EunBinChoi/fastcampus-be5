@@ -1,4 +1,6 @@
-package me.day07.assignment03_review.practice02;
+package me.day07.assignment03_review.practice03;
+
+import me.day07.assignment03_review.practice02.Electronic;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,7 +15,7 @@ public class User {
     private String userPhoneNumber;
     private String userEmail;
     private LocalDate userBirthDate;
-    private Electronic[] electronicDevice;
+    private me.day07.assignment03_review.practice02.Electronic[] electronicDevice;
     private LocalDateTime registerTime;
 
     public User() {
@@ -41,7 +43,7 @@ public class User {
         this.userBirthDate = userBirthDate;
     }
 
-    public User(String userId, String userPassword, String userPhoneNumber, String userEmail, LocalDate userBirthDate, Electronic[] electronicDevice) {
+    public User(String userId, String userPassword, String userPhoneNumber, String userEmail, LocalDate userBirthDate, me.day07.assignment03_review.practice02.Electronic[] electronicDevice) {
         this();
         this.userId = userId;
         this.userPassword = userPassword;
@@ -51,7 +53,7 @@ public class User {
         this.electronicDevice = electronicDevice;
     }
 
-    public User(String userId, String userPassword, String userPhoneNumber, String userEmail, LocalDate userBirthDate, Electronic[] electronicDevice, LocalDateTime registerTime) {
+    public User(String userId, String userPassword, String userPhoneNumber, String userEmail, LocalDate userBirthDate, me.day07.assignment03_review.practice02.Electronic[] electronicDevice, LocalDateTime registerTime) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userPhoneNumber = userPhoneNumber;
@@ -101,11 +103,11 @@ public class User {
         this.userBirthDate = userBirthDate;
     }
 
-    public Electronic[] getElectronicDevice() {
+    public me.day07.assignment03_review.practice02.Electronic[] getElectronicDevice() {
         return electronicDevice;
     }
 
-    public void setElectronicDevice(Electronic[] electronicDevice) {
+    public void setElectronicDevice(me.day07.assignment03_review.practice02.Electronic[] electronicDevice) {
         this.electronicDevice = electronicDevice;
     }
 

@@ -32,11 +32,6 @@ public class Triangle extends Shape implements Calculable {
     }
 
     @Override
-    public void draw() {
-        System.out.println(Triangle.class.getName() + " draw()");
-    }
-
-    @Override
     public double area() {
         return base * height * 0.5;
     }

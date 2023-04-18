@@ -14,14 +14,14 @@ public class Member {
     private String mAddress;
 
     private DArray<ShoppingCart> shoppingCarts;
-    private Orders orders;
+    private DArray<ShoppingCart> orders;
     private LocalDateTime signupTime; // system time
     private Authority authority;
 
 
     private Member() {
         shoppingCarts = new DArray<>();
-        orders = new Orders();
+        orders = new DArray<>();
         signupTime = LocalDateTime.now(ZoneId.systemDefault());
         authority = Authority.USER;
     }
@@ -102,11 +102,11 @@ public class Member {
         this.shoppingCarts = shoppingCarts;
     }
 
-    public Orders getOrders() {
+    public DArray<ShoppingCart> getOrders() {
         return orders;
     }
 
-    public void setOrders(Orders orders) {
+    public void setOrders(DArray<ShoppingCart> orders) {
         this.orders = orders;
     }
 

@@ -1,12 +1,11 @@
 package me.day05.assignment03.practice02;
 
-import me.day05.assignment03.practice03.Electronic;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class User {
     private String userId;
@@ -114,12 +113,18 @@ public class User {
         return registerTime;
     }
 
-    public User copy(User user) {
-        if (user == null) return null;
+    // 실습 2-3
+    public User copy() {
         return new User(
-                user.userId, user.userPassword,
-                user.userPhoneNumber, user.userEmail, user.userBirthDate,
-                Arrays.copyOf(electronicDevice, electronicDevice.length), registerTime);
+                userId,
+                userPassword,
+                userPhoneNumber,
+                userEmail,
+                LocalDate.from(userBirthDate),
+                Arrays.stream(electronicDevice)
+                        .map(Electronic::copy)
+                        .collect(Collectors.toList()).toArray(new Electronic[electronicDevice.length]),
+                LocalDateTime.from(registerTime));
     }
 
     @Override

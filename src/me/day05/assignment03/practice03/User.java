@@ -1,4 +1,6 @@
-package me.day07.assignment03_review.practice02;
+package me.day05.assignment03.practice03;
+
+import me.day05.assignment03.practice02.Electronic;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

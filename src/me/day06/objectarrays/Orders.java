@@ -142,7 +142,7 @@ public class Orders {
         Orders group = new Orders();
 
         for (int i = 0; i < size; i++) {
-            if (orders[i].getOrderStatus() == status) {
+            if (orders[i].getOrderStatus() == status) { // enum equals() (X) => == (O)
                 group.add(orders[i]);
             }
         }

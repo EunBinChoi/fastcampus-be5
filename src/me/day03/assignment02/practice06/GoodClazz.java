@@ -7,27 +7,23 @@ package me.day03.assignment02.practice06;
  * - 이렇게 하기 보다는 외부에서 A, B 클래스의 객체를 만들고 생성자나 setter를 통해 주입하는 것이 좋다.
  * */
 
-
-import me.day05.assignment02_review.practice06.A;
-import me.day05.assignment02_review.practice06.B;
-
 public class GoodClazz {
-    private me.day05.assignment02_review.practice06.A a;
-    private me.day05.assignment02_review.practice06.B b;
+    private A a;
+    private B b;
 
     public GoodClazz() {
     }
 
-    public GoodClazz(me.day05.assignment02_review.practice06.A a, me.day05.assignment02_review.practice06.B b) {
+    public GoodClazz(A a, B b) {
         this.a = a;
         this.b = b;
     }
 
-    public void setA(me.day05.assignment02_review.practice06.A a) {
+    public void setA(A a) {
         this.a = a;
     }
 
-    public void setB(me.day05.assignment02_review.practice06.B b) {
+    public void setB(B b) {
         this.b = b;
     }
 

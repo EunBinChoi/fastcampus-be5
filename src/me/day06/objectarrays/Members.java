@@ -66,7 +66,7 @@ public class Members {
         if (member == null) return false;
         if (member.getmId() == null) return false;
 
-        // id duplicate check
+        // id duplicate check (mId: PK)
         for (int i = 0; i < allMembers.size(); i++) {
             if (allMembers.get(i).equals(member)) return false;
         }
@@ -75,6 +75,8 @@ public class Members {
         return true;
     }
 
+    // member: eunbin1123, eunbin12345, asdasdas@gmail.com, "경기도 고양시,,,",,
+    // Member member: 일부 필드는 수정이 되고 나머지 필드는 동일한 객체
     public boolean update(Member member) {
         if (member == null) return false;
         if (member.getmId() == null) return false;
@@ -200,7 +202,7 @@ public class Members {
     }
 
     // NEW: 실제 객체 수만큼 객체 배열의 크기를 변경
-    public Members trimToSize() {
+    public Members trimToSize() { // 배열 객체가 더이상 추가되지 않을 때 => 정적 데이터
         members = Arrays.copyOf(members, size);
         capacity = size;
 
@@ -214,11 +216,25 @@ public class Members {
         if (mId == null || mPw == null) return false;
 
         int idx = indexOf(new Member(mId, mPw));
-        if (idx == -1) return false;
+        if (idx == -1) return false; // mId is not found in DB.
 
         if (members[idx].getmId() == null || members[idx].getmPw() == null) return false;
         if (members[idx].getmId().equals(mId) && members[idx].getmPw().equals(mPw)) return true;
         return false;
+    }
+
+    public boolean revise(Member member) {
+        if (member == null) return false;
+        if (member.getmId() == null) return false;
+
+        // find member's index
+        int idx = indexOf(member);
+        if (idx == -1) return false; // member is not found to be updated.
+
+        members[idx].setmPw(member.getmPw());
+        members[idx].setmEmail(member.getmEmail());
+        members[idx].setmAddress(member.getmAddress());
+        return true;
     }
 
     /////////////////////////////////////////

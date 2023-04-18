@@ -32,11 +32,6 @@ public class Rectangle extends Shape implements Calculable {
     }
 
     @Override
-    public void draw() {
-        System.out.println(Rectangle.class.getName() + " draw()");
-    }
-
-    @Override
     public double area() {
         return width * height;
     }

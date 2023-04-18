@@ -54,6 +54,13 @@ public class Electronic {
         this.authMethods = authMethods;
     }
 
+    public Electronic(String productNo, String modelName, Company companyName, LocalDate dateOfMade, AuthMethod[] authMethods) {
+        this.productNo = productNo;
+        this.modelName = modelName;
+        this.companyName = companyName;
+        this.dateOfMade = dateOfMade;
+        this.authMethods = authMethods;
+    }
 
     public String getProductNo() {
         return productNo;
@@ -93,6 +100,16 @@ public class Electronic {
 
     public void setAuthMethods(AuthMethod[] authMethods) {
         this.authMethods = authMethods;
+    }
+
+    // 실습 2-3
+    public Electronic copy() {
+        return new Electronic(
+                productNo,
+                modelName,
+                companyName,
+                LocalDate.from(dateOfMade),
+                Arrays.copyOf(authMethods, authMethods.length));
     }
 
     @Override

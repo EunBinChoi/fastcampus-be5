@@ -206,27 +206,28 @@ public class ShoppingItems {
 
     /////////////////////////////////////////
     // 프로그램 기능 구현을 위한 메소드
-    public ShoppingItem searchByItemName(String itemName) {
+    public ShoppingItems searchByItemName(String itemName) {
         if (itemName == null) return null;
 
+        ShoppingItems group = new ShoppingItems();
         for (int i = 0; i < size; i++) {
             if (shoppingItems[i] == null) continue;
             if (shoppingItems[i].getItemName() == null) continue;
-            if (shoppingItems[i].getItemName().equals(itemName)) return shoppingItems[i];
+            if (shoppingItems[i].getItemName().equals(itemName)) group.add(shoppingItems[i]);
         }
-        return null;
+        return (group.size == 0) ? null : group;
     }
 
     public ShoppingItems searchByCategory(ShoppingItem.Category category) {
         if (category == null) return null;
 
-        ShoppingItems groups = new ShoppingItems();
+        ShoppingItems group = new ShoppingItems();
         for (int i = 0; i < size; i++) {
             if (shoppingItems[i] == null) continue;
             if (shoppingItems[i].getCategory() == null) continue;
-            if (shoppingItems[i].getCategory() == category) groups.add(shoppingItems[i]);
+            if (shoppingItems[i].getCategory() == category) group.add(shoppingItems[i]);
         }
-        return (groups.size == 0) ? null : groups;
+        return (group.size == 0) ? null : group;
     }
 
     /**
@@ -237,14 +238,14 @@ public class ShoppingItems {
     public ShoppingItems searchByPriceRange(int start, int end) {
         if (start >= end) return null;
 
-        ShoppingItems groups = new ShoppingItems();
+        ShoppingItems group = new ShoppingItems();
         for (int i = 0; i < size; i++) {
             if (shoppingItems[i] == null) continue;
             if (shoppingItems[i].getPrice() >= start && shoppingItems[i].getPrice() < end) {
-                groups.add(shoppingItems[i]);
+                group.add(shoppingItems[i]);
             }
         }
-        return (groups.size == 0) ? null : groups;
+        return (group.size == 0) ? null : group;
     }
     /////////////////////////////////////////
 

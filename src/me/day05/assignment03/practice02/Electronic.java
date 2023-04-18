@@ -1,4 +1,4 @@
-package me.day05.assignment03.practice03;
+package me.day05.assignment03.practice02;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

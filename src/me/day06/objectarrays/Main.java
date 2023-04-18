@@ -60,13 +60,14 @@ public class Main {
 
         // 문제 2: 회원정보 수정 기능
         System.out.println("<<<문제 2>>>");
-        System.out.println(members.update(new Member("sally")));
-        System.out.println(members.update(new Member("eunbin1", "eunbin1")));
-        System.out.println(members.update(
+        System.out.println(members.revise(new Member("sally")));
+        System.out.println(members.revise(new Member("eunbin1", "eunbin1")));
+        System.out.println(members.revise(
                 new Member(
-                        "eunbin1", "eunbin1",
+                        "eunbin2", "eunbin112312",
                         "eunbin544@gmail.com",
                         "서울특별시 동작구 ...")));
+        System.out.println(members);
         System.out.println();
 
         // 문제 3: 상품 이름을 통해 상품을 검색하는 기능
@@ -105,16 +106,24 @@ public class Main {
 
         // case 1: members(0) order shopping items in shopping cart.
         System.out.println("case 1");
-        members.get(0).order("대전광역시 서구 ...");
         System.out.println(members.get(0).getShoppingCarts());
+        System.out.println();
+        members.get(0).order("대전광역시 서구 ...");
         System.out.println(members.get(0).getOrders());
+        System.out.println();
+        System.out.println(members.get(0).getShoppingCarts());
+        System.out.println();
         System.out.println();
 
         // case 2: members(0) order shopping item directly.
         System.out.println("case 2");
-        members.get(0).order(shoppingItems.get(5), 2, "경기도 고양시 ...");
         System.out.println(members.get(0).getShoppingCarts());
+        System.out.println();
+        members.get(0).order(shoppingItems.get(5), 2, "경기도 고양시 ...");
         System.out.println(members.get(0).getOrders());
+        System.out.println();
+        System.out.println(members.get(0).getShoppingCarts());
+        System.out.println();
         System.out.println();
 
 

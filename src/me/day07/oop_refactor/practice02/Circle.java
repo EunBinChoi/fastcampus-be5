@@ -22,11 +22,6 @@ public class Circle extends Shape implements Calculable {
     }
 
     @Override
-    public void draw() {
-        System.out.println(Circle.class.getName() + " draw()");
-    }
-
-    @Override
     public double area() {
         return Math.PI * radius * radius;
     }

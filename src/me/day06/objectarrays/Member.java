@@ -139,6 +139,8 @@ public class Member {
         shoppingCarts.pop(idx);
     }
 
+    // - 장바구니 -> 구매
+    // - 바로 구매 ((장바구니) -> 구매)
     public void order() {
         orders.add(shoppingCarts.ordered(mAddress));
     }

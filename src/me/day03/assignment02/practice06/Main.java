@@ -1,10 +1,5 @@
 package me.day03.assignment02.practice06;
 
-import me.day05.assignment02_review.practice06.A;
-import me.day05.assignment02_review.practice06.B;
-import me.day05.assignment02_review.practice06.Clazz;
-import me.day05.assignment02_review.practice06.GoodClazz;
-
 public class Main {
     static final int DEFAULT = 10;
     public static void main(String[] args) {
