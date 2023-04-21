@@ -36,19 +36,20 @@ public class Practice03 {
         while (jsonStrings.hasMoreTokens()) {
             String jsonString = jsonStrings.nextToken().replaceAll("[{|}]", "").strip();
             StringTokenizer dataTokenizer = new StringTokenizer(jsonString, ":");
-            String column = dataTokenizer.nextToken().replaceAll("\"", "").strip();
-            String data = dataTokenizer.nextToken().replaceAll("\"", "").strip();
+            String key = dataTokenizer.nextToken().replaceAll("\"", "").strip();
+            String value = dataTokenizer.nextToken().replaceAll("\"", "").strip();
 
             int row = count / COL_NUM;
             int col = count % COL_NUM;
 
-            columns[col] = column;
-            jsonTable[row][col] = data;
+            columns[col] = key;
+            jsonTable[row][col] = value;
 
             count++;
         }
 
-        // (질문) 아래 코드는 왜 제대로 반복되지 않을까요?
+
+//        // (질문) 아래 코드는 왜 제대로 반복되지 않을까요?
 //        for (int i = 0; i < jsonStrings.countTokens(); i++) {
 //            System.out.println("i = " + i);
 //            System.out.println(jsonStrings.nextToken());

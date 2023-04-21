@@ -21,7 +21,7 @@ public class BigIntegerExample {
         BigInteger bigInteger1 = new BigInteger("9223372036854775807");
         BigInteger bigInteger2 = new BigInteger("-9223372036854775807");
         BigInteger bigInteger3 = new BigInteger("FFFF", 16);
-        BigInteger bigInteger4 = BigInteger.valueOf(1234567890L);
+        BigInteger bigInteger4 = BigInteger.valueOf(1234567890);
         System.out.println("bigInteger1 = " + bigInteger1);
         System.out.println("bigInteger1.signum() = " + bigInteger1.signum());
         System.out.println("bigInteger2 = " + bigInteger2);

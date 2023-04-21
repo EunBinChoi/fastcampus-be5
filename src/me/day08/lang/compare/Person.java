@@ -83,13 +83,13 @@ public class Person implements Comparable<Person> {
     @Override
     public int compareTo(Person o) {
         // 이름으로 오름차순
-        if (this.name.compareTo(o.name) < 0) return -1;
-        else if (this.name.compareTo(o.name) == 0) {
+        if (name.compareTo(o.name) < 0) return -1;
+        else if (name.compareTo(o.name) == 0) {
             // 생년월일로 오름차순
-//            if (this.birthdate.compareTo(o.birthdate) < 0) return -1;
-//            else if (this.birthdate.compareTo(o.birthdate) == 0) return 0;
+//            if (birthdate.compareTo(o.birthdate) < 0) return -1;
+//            else if (birthdate.compareTo(o.birthdate) == 0) return 0;
 //            else return 1;
-            return this.birthdate.compareTo(o.birthdate);
+            return birthdate.compareTo(o.birthdate);
         }
         else return 1;
     }

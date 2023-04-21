@@ -19,8 +19,8 @@ public class Main {
         people[3] = new Person("aa", Gender.FEMALE, "970722", "970722-2387883");
         people[4] = new Person("zz", Gender.MALE, "980420", "980420-1101225");
 
-        System.out.println("<이름 오름차순 정렬>");
-        Arrays.sort(people);
+        System.out.println("<이름/생년월인 오름차순 정렬>");
+        Arrays.sort(people); // ClassCastException (Comparable) (person[i])
         for (Person p: people) {
             System.out.println(p);
         }
@@ -32,15 +32,16 @@ public class Main {
         }
 
         System.out.println("<생년월일 내림차순 정렬>");
+        // 익명 객체 (일회성)
         Arrays.sort(people, new Comparator<Person>() {
             @Override
             public int compare(Person o1, Person o2) {
-//                if (o1.getBirthdate().compareTo(o2.getBirthdate()) < 0) return 1;
-//                else if (o1.getBirthdate().compareTo(o2.getBirthdate()) < 0) return 0;
-//                else return -1;
                 return o1.getBirthdate().compareTo(o2.getBirthdate()) * -1;
             }
         });
+
+        // Arrays.sort(1, 2)
+        Arrays.sort(people, (o1, o2) -> o1.getBirthdate().compareTo(o2.getBirthdate()) * -1);
         for (Person p: people) {
             System.out.println(p);
         }
