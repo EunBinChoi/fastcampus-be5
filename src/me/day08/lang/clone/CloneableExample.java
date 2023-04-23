@@ -76,9 +76,9 @@ class PhoneNumber {
             countryField.setAccessible(true);
             countryField.set(cloned, origin.COUNTRY.clone());
             return cloned;
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException();
         } catch (IllegalAccessException e) {
+            throw new RuntimeException();
+        } catch (NoSuchFieldException e) {
             throw new RuntimeException();
         }
     }
