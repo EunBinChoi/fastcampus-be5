@@ -20,6 +20,7 @@ public class Main {
         System.out.println("배열 주소값 비교 = " + (objectCopyExample1.getPersonArray() == objectCopyExample2.getPersonArray()));
         System.out.println("객체 주소값 비교 = " + (objectCopyExample1.getPersonArray()[0] == objectCopyExample2.getPersonArray()[0]));
 
+        // 원소값 수정
         objectCopyExample1.getPersonArray()[0].setName("d");
         System.out.println(objectCopyExample1.getPersonArray()[0]);
         System.out.println(objectCopyExample2.getPersonArray()[0]);
