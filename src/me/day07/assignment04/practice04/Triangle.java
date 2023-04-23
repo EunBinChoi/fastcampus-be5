@@ -1,5 +1,8 @@
 package me.day07.assignment04.practice04;
 
+import me.day09.assignment04_review.practice04.Point;
+import me.day09.assignment04_review.practice04.Shape;
+
 import java.util.Objects;
 
 public class Triangle extends Shape {
@@ -13,8 +16,8 @@ public class Triangle extends Shape {
         this.height = height;
     }
 
-    public Triangle(Point centerPoint, int base, int height) {
-        super(centerPoint);
+    public Triangle(Point center, int base, int height) {
+        super(center);
         this.base = base;
         this.height = height;
     }
@@ -40,6 +43,10 @@ public class Triangle extends Shape {
         System.out.println(Triangle.class.getName() + " draw()");
     }
 
+    @Override
+    public double area() {
+        return 0.5 * base * height;
+    }
 
     @Override
     public boolean equals(Object o) {

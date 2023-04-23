@@ -1,11 +1,21 @@
 package me.day07.assignment04.practice06;
 
+import me.day09.assignment04_review.practice06.Kid;
+import me.day09.assignment04_review.practice06.Person;
+import me.day09.assignment04_review.practice06.Student;
+
 import java.time.LocalTime;
 import java.util.Objects;
 
 public class Park {
     private String name;
     private Double fee;
+    /*
+    * Person (일반) -> 할인 없음
+    * Worker (직장인) -> 할인 없음
+    * Student (대학생, 고등학생) -> 기본 요금에서 30%
+    * Kid (아이) -> 돈 받지 않음
+    * */
     private LocalTime openTime;
     private LocalTime closeTime;
 
@@ -32,17 +42,13 @@ public class Park {
         this.name = name;
     }
 
-    // @TODO: write the code to get proper fee.
-    // Person 클래스의 자식들은 모두 Park에 들어갈 수 있음
-    // 각각의 자식들마다 할인율이 다름
-    /*
-     * Person (일반) -> 할인 없음
-     * Worker (직장인) -> 할인 없음
-     * Student (대학생, 고등학생) -> 기본 요금에서 30%
-     * Kid (아이) -> 돈 받지 않음
-     * */
     public Double getFee(Person person) {
-        return 0.0;
+        if (person instanceof Kid) {
+            return fee * (1 - ((Kid) person).rate());
+        } else if (person instanceof Student) {
+            return fee * (1 - ((Student) person).rate());
+        }
+        return fee;
     }
 
 

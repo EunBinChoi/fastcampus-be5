@@ -1,5 +1,7 @@
 package me.day07.assignment04.practice03;
 
+import me.day07.assignment04.practice03.Point;
+
 import java.util.Objects;
 
 public class Shape {

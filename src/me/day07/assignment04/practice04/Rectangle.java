@@ -1,5 +1,8 @@
 package me.day07.assignment04.practice04;
 
+import me.day09.assignment04_review.practice04.Point;
+import me.day09.assignment04_review.practice04.Shape;
+
 import java.util.Objects;
 
 public class Rectangle extends Shape {
@@ -13,8 +16,8 @@ public class Rectangle extends Shape {
         this.height = height;
     }
 
-    public Rectangle(Point centerPoint, int width, int height) {
-        super(centerPoint);
+    public Rectangle(Point center, int width, int height) {
+        super(center);
         this.width = width;
         this.height = height;
     }
@@ -38,6 +41,11 @@ public class Rectangle extends Shape {
     @Override
     public void draw() {
         System.out.println(Rectangle.class.getName() + " draw()");
+    }
+
+    @Override
+    public double area() {
+        return width * height;
     }
 
     @Override

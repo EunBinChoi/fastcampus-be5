@@ -1,5 +1,7 @@
 package me.day07.assignment04.practice04;
 
+import me.day09.assignment04_review.practice04.Point;
+
 import java.util.Objects;
 
 public abstract class Shape {
@@ -21,6 +23,7 @@ public abstract class Shape {
     }
 
     public abstract void draw();
+    public abstract double area();
 
     @Override
     public boolean equals(Object o) {

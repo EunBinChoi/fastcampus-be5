@@ -1,5 +1,8 @@
 package me.day07.assignment04.practice04;
 
+import me.day09.assignment04_review.practice04.Point;
+import me.day09.assignment04_review.practice04.Shape;
+
 import java.util.Objects;
 
 public class Circle extends Shape {
@@ -11,8 +14,8 @@ public class Circle extends Shape {
         this.radius = radius;
     }
 
-    public Circle(Point centerPoint, int radius) {
-        super(centerPoint);
+    public Circle(Point center, int radius) {
+        super(center);
         this.radius = radius;
     }
 
@@ -27,6 +30,11 @@ public class Circle extends Shape {
     @Override
     public void draw() {
         System.out.println(Circle.class.getName() + " draw()");
+    }
+
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
     }
 
     @Override

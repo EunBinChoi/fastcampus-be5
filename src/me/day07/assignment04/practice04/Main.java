@@ -1,5 +1,11 @@
 package me.day07.assignment04.practice04;
 
+import me.day09.assignment04_review.practice04.Circle;
+import me.day09.assignment04_review.practice04.Point;
+import me.day09.assignment04_review.practice04.Rectangle;
+import me.day09.assignment04_review.practice04.Shape;
+import me.day09.assignment04_review.practice04.Triangle;
+
 public class Main {
     public static void main(String[] args) {
         Shape[] shapes = {new Circle(3),
@@ -20,6 +26,7 @@ public class Main {
         System.out.println("[ Shapes' area ] ");
         for (int i = 0; i < shapes.length; i++) {
             System.out.println(shapes[i].getClass().getName() + " = " + area(shapes[i]));
+            System.out.println(shapes[i].getClass().getName() + " = " + shapes[i].area());
         }
         System.out.println();
 
