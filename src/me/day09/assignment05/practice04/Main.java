@@ -14,7 +14,7 @@ public class Main {
         people[4] = new Person("zz", Person.Gender.MALE, "980420", "980420-1101225");
 
         System.out.println("<이름 오름차순 정렬>");
-        Arrays.sort(people); // people[0], people[1], .... people[4]
+        Arrays.sort(people);
         for (Person p: people) {
             System.out.println(p);
         }
