@@ -20,7 +20,7 @@ public class Main {
         System.out.println("[ Shapes' area ] ");
         for (int i = 0; i < shapes.length; i++) {
             System.out.println(shapes[i].getClass().getName() + " = " + area(shapes[i]));
-            System.out.println(shapes[i].getClass().getName() + " = " + shapes[i].area());
+            System.out.println(shapes[i].getClass().getName() + " = " + shapes[i].area()); // 동적 바인딩
         }
         System.out.println();
 

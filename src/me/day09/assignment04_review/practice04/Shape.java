@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public abstract class Shape {
 
-    protected Point center;
+    protected Point center; // 정보를 가짐
 
     public Shape() {}
 

@@ -5,10 +5,15 @@ import me.day07.assignment04.practice03.Shape;
 
 public class Main {
     public static void main(String[] args) {
-        Shape shape = new Circle();
+        Shape shape = new Circle(); // 자동 형변환
         System.out.println(shape);
 
         Circle circle = (Circle) new Shape();
+
+        // 명시 형변환을 막아둔 이유?
+        // new Shape(): center
+        // Circle circle: center, radius
+
         // 런타임 오류 발생 위치
         // java.lang.ClassCastException: class me.day07.assignment04.practice03.Shape cannot be cast to class me.day07.assignment04.practice03.Circle
 

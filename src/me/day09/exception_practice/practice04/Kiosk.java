@@ -57,10 +57,10 @@ public class Kiosk {
                 choice = Utils.chooseMenu("메뉴 주문 번호: ");
             } catch (OutOfBoundsPossibleTriesException e) {
                 System.out.println("입력오류. 입력가능한 횟수를 초과하였습니다.\n");
-                break;
+                break; // 입력시도 초과에 의한 프로그램 종료
             } catch (ProgramExitException e) {
                 System.out.println("프로그램 종료.\n");
-                break;
+                break; // 정상적인 프로그램 종료
             }
 
             try {

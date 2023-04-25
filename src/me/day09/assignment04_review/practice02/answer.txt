@@ -1,15 +1,16 @@
 /** write the answer here. */
 
 인터페이스에 정의할 수 있는 필드와 메소드는 다음과 같다:
-1) 상수 - public static final
-2) 추상 메소드 - public abstract
-3) 디폴트 메소드 - public default
-4) static 메소드 - public static
+1) 상수 - (public static final)
+2) 추상 메소드 - (public abstract)
+3) 디폴트 메소드 - (public) default
+4) static 메소드 - (public) static
 
 모두 public 만 정의가 가능하다.
 
-protected - 인터페이스는 클래스 계층도에 올라가지 않음. 따라서 부모와 자식 간의 관계가 없기 떄문에 protected 불가능함.
+protected - 인터페이스는 클래스 계층도에 올라가지 않음. 따라서 부모와 자식 간의 관계가 없기 때문에 protected 불가능함.
 private - 인터페이스의 상수나 메소드를 private 으로 정의하면 접근 가능한 객체가 없기 때문에 불가능함.
 
-일반적으로 인터페이스는 객체 간의 공통된 기능들을 정의하기 위해 만들어짐
+// field, method unvisible: 접근제어자가 막고 있음
+일반적으로 인터페이스는 객체 간의 공통된 기능들을 정의하기 위해 만들어짐.
 따라서 인터페이스의 상수나 메소드 자체가 public 하지 않으면 객체들에게 공통된 기능을 제공할 수 없음

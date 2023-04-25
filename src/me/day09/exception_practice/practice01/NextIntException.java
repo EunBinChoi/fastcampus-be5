@@ -10,15 +10,16 @@ public class NextIntException {
         while(true) {
             try {
                 System.out.print(">> input number : ");
-                int number = scanner.nextInt();
+                int number = scanner.nextInt(); // new InputMismatchException()
                 System.out.println("number = " + number);
                 break;
             } catch (InputMismatchException e) {
                 String typeError = scanner.next();
                 System.out.printf("you type '%s', but it is not a number\n", typeError);
+            } finally {
+                System.out.println("finally");
             }
         }
-
         scanner.close();
     }
 }
