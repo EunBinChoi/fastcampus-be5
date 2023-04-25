@@ -39,14 +39,11 @@ public class Park {
     }
 
     public Double getFee(Person person) {
-        if (person instanceof Kid) {
-            return fee * (1 - ((Kid) person).rate());
-        } else if (person instanceof Student) {
-            return fee * (1 - ((Student) person).rate());
+        if (person instanceof SaleAble) {
+            return fee * (1 - ((SaleAble) person).rate());
         }
         return fee;
     }
-
 
     public void setFee(Double fee) {
         this.fee = fee;
