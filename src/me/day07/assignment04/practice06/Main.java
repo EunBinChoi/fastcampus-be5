@@ -1,13 +1,5 @@
 package me.day07.assignment04.practice06;
 
-import me.day09.assignment04_review.practice06.HighStudent;
-import me.day09.assignment04_review.practice06.Kid;
-import me.day09.assignment04_review.practice06.Park;
-import me.day09.assignment04_review.practice06.Person;
-import me.day09.assignment04_review.practice06.Student;
-import me.day09.assignment04_review.practice06.UnivStudent;
-import me.day09.assignment04_review.practice06.Worker;
-
 public class Main {
     public static void main(String[] args) {
         Park park = new Park("에버랜드", 50000.0);

@@ -1,9 +1,5 @@
 package me.day07.assignment04.practice06;
 
-import me.day09.assignment04_review.practice06.Kid;
-import me.day09.assignment04_review.practice06.Person;
-import me.day09.assignment04_review.practice06.Student;
-
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -43,14 +39,11 @@ public class Park {
     }
 
     public Double getFee(Person person) {
-        if (person instanceof Kid) {
-            return fee * (1 - ((Kid) person).rate());
-        } else if (person instanceof Student) {
-            return fee * (1 - ((Student) person).rate());
+        if (person instanceof SaleAble) {
+            return fee * (1 - ((SaleAble) person).rate());
         }
         return fee;
     }
-
 
     public void setFee(Double fee) {
         this.fee = fee;
