@@ -1,4 +1,4 @@
-package me.day09.exception_practice.practice05;
+package me.day10.smartstore.arrays;
 
 import me.day09.exception_practice.practice05.exception.ElementNotFoundException;
 import me.day09.exception_practice.practice05.exception.EmptyArrayException;
@@ -46,6 +46,12 @@ public class DArray<T> implements Collections<T> { // Dynamic Array
         return arrays[index];
     }
 
+    /**
+     * @param: ...
+     * @return: ...
+     * @throws: IndexOutOfBoundsException
+     * @throws: NullArgumentException
+     * */
     @Override
     public void set(int index, T object) throws IndexOutOfBoundsException, NullArgumentException {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();

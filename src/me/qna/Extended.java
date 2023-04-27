@@ -1,5 +1,7 @@
 package me.qna;
 
+
+// https://stackoverflow.com/questions/4716040/do-subclasses-inherit-private-fields
 class Super {
     private int privateField;
     public int publicField;
@@ -14,20 +16,11 @@ class Super {
 }
 
 class Sub extends Super {
-    public Super aSuper = new Super();
-
-    @Override
-    public String toString() {
-        return "Sub{" +
-                "aSuper=" + aSuper +
-                '}';
-    }
 }
 
 
 public class Extended {
     public static void main(String[] args) {
         Sub sub = new Sub();
-        System.out.println(sub.aSuper);
     }
 }
