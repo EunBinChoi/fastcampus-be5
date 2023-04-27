@@ -36,10 +36,11 @@ public class SmartStoreApp {
         allGroups.add(new Group(new Parameter(20, 200000), GroupType.VIP));
         allGroups.add(new Group(new Parameter(30, 300000), GroupType.VVIP));
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 26; i++) {
             allCustomers.add(new Customer(
                     Character.toString(
-                            (char) ('a' + i)), (char) ('a' + i) + "123",
+                            (char) ('a' + i)),
+                    (char) ('a' + i) + "123",
                     ((int) (Math.random() * 5) + 1) * 10,
                     ((int) (Math.random() * 5) + 1) * 100000));
         }
