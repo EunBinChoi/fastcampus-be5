@@ -3,7 +3,7 @@ package me.day10.smartstore.group;
 import me.day10.smartstore.arrays.DArray;
 import me.day10.smartstore.customer.Customers;
 
-public class Groups extends DArray {
+public class Groups extends DArray<Group> {
     // singleton
     private static Groups allGroups;
 
