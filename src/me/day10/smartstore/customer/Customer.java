@@ -3,56 +3,60 @@ package me.day10.smartstore.customer;
 import java.util.Objects;
 
 public class Customer {
-    private String cName;
-    private String cId;
-    private Integer totalTime;
-    private Integer totalPay;
+    private String cusName;
+    private String cusId;
+    private Integer cusTotalTime;
+    private Integer cusTotalPay;
 
     public Customer() {
     }
 
-    public Customer(String cName, String cId) {
-        this.cName = cName;
-        this.cId = cId;
+    public Customer(String cusId) {
+        this.cusId = cusId;
     }
 
-    public Customer(String cName, String cId, Integer totalTime, Integer totalPay) {
-        this.cName = cName;
-        this.cId = cId;
-        this.totalTime = totalTime;
-        this.totalPay = totalPay;
+    public Customer(String cusName, String cusId) {
+        this.cusName = cusName;
+        this.cusId = cusId;
     }
 
-    public String getcName() {
-        return cName;
+    public Customer(String cusName, String cusId, Integer cusTotalTime, Integer cusTotalPay) {
+        this.cusName = cusName;
+        this.cusId = cusId;
+        this.cusTotalTime = cusTotalTime;
+        this.cusTotalPay = cusTotalPay;
     }
 
-    public void setcName(String cName) {
-        this.cName = cName;
+    public String getCusName() {
+        return cusName;
     }
 
-    public String getcId() {
-        return cId;
+    public void setCusName(String cusName) {
+        this.cusName = cusName;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId;
+    public String getCusId() {
+        return cusId;
     }
 
-    public Integer getTotalTime() {
-        return totalTime;
+    public void setCusId(String cusId) {
+        this.cusId = cusId;
     }
 
-    public void setTotalTime(Integer totalTime) {
-        this.totalTime = totalTime;
+    public Integer getCusTotalTime() {
+        return cusTotalTime;
     }
 
-    public Integer getTotalPay() {
-        return totalPay;
+    public void setCusTotalTime(Integer cusTotalTime) {
+        this.cusTotalTime = cusTotalTime;
     }
 
-    public void setTotalPay(Integer totalPay) {
-        this.totalPay = totalPay;
+    public Integer getCusTotalPay() {
+        return cusTotalPay;
+    }
+
+    public void setCusTotalPay(Integer cusTotalPay) {
+        this.cusTotalPay = cusTotalPay;
     }
 
     @Override
@@ -60,21 +64,21 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(cId, customer.cId);
+        return Objects.equals(cusId, customer.cusId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cId);
+        return Objects.hash(cusId);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "cName='" + cName + '\'' +
-                ", cId='" + cId + '\'' +
-                ", totalTime=" + totalTime +
-                ", totalPay=" + totalPay +
+                "cusName='" + cusName + '\'' +
+                ", cusId='" + cusId + '\'' +
+                ", cusTotalTime=" + cusTotalTime +
+                ", cusTotalPay=" + cusTotalPay +
                 '}';
     }
 }
