@@ -1,6 +1,6 @@
 package me.day10.smartstore.menu;
 
-public class CustomerMenu {
+public class CustomerMenu implements Menu {
     // singleton
     private static CustomerMenu customerMenu;
 
@@ -12,4 +12,16 @@ public class CustomerMenu {
     }
 
     private CustomerMenu() {}
+
+    @Override
+    public void manage() {
+        while ( true ) { // 서브 메뉴 페이지를 유지하기 위한 while
+            int choice = chooseMenu(new String[]{
+                    "Add Customer",
+                    "View Customer",
+                    "Update Customer",
+                    "Delete Customer",
+                    "Back"});
+        }
+    }
 }

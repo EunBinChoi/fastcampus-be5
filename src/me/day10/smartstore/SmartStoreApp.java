@@ -6,12 +6,13 @@ import me.day10.smartstore.group.Group;
 import me.day10.smartstore.group.GroupType;
 import me.day10.smartstore.group.Groups;
 import me.day10.smartstore.group.Parameter;
-import me.day10.smartstore.menu.Menu;
+import me.day10.smartstore.menu.*;
 
 public class SmartStoreApp {
     private final Groups allGroups = Groups.getInstance();
     private final Customers allCustomers = Customers.getInstance();
-    private final Menu menu = Menu.getInstance();
+
+    private final MainMenu mainMenu = MainMenu.getInstance();
 
     // singleton
     private static SmartStoreApp smartStoreApp;
@@ -58,19 +59,7 @@ public class SmartStoreApp {
 
     public void run() {
         details();
-
-        while ( true ) { // 프로그램 실행 while
-            int choice = menu.dispMenu(new String[] {
-                    "Group",
-                    "Customer",
-                    "Classification Summary",
-                    "Quit"});
-
-//            if (choice == 1) group();
-//            else if (choice == 2) customer();
-//            else if (choice == 3) summary();
-//            else if (choice == 4) { System.out.println("Program Finished"); break; }
-        }
+        mainMenu.manage();
 
     }
 }

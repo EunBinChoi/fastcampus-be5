@@ -15,4 +15,13 @@ public class Groups extends DArray<Group> {
     }
 
     private Groups() {}
+
+    public Group find(GroupType groupType) {
+        for (Group group : arrays) {
+            if (group.getGroupType() == groupType) { // enum의 비교는 equals가 아님
+                return group;
+            }
+        }
+        return null;
+    }
 }

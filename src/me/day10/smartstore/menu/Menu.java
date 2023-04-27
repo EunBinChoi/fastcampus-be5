@@ -1,31 +1,27 @@
 package me.day10.smartstore.menu;
 
 import me.day09.exception_practice.practice04.exception.InputRangeException;
+import me.day10.smartstore.exception.InputEndException;
 import me.day10.smartstore.util.Message;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Menu {
-    // singleton
-    private static Menu menu;
-    public Scanner scanner = new Scanner(System.in);
+public interface Menu {
+    Scanner scanner = new Scanner(System.in);
 
-    public static Menu getInstance() {
-        if (menu == null) {
-            menu = new Menu();
-        }
-        return menu;
+    default String nextLine() { // 하나의 프로그램 상에서 nextLine() 함수를 통해서 사용자 입력을 받음
+        return scanner.nextLine().toUpperCase();
     }
 
-    private Menu() {}
-
-    public String nextLine() { // 하나의 프로그램 상에서 nextLine() 함수를 통해서 사용자 입력을 받음
+    default String nextLine(String end) {
+        System.out.println("** Press 'end', if you want to exit! **");
         String str = scanner.nextLine().toUpperCase();
+        if (str.equals(end)) throw new InputEndException();
         return str;
     }
 
-    public int dispMenu(String[] menus) {
+    default int chooseMenu(String[] menus) {
         while ( true ) { // 예외 복구 while
             try {
                 System.out.println("===============================");
@@ -47,4 +43,6 @@ public class Menu {
             }
         }
     }
+
+    void manage(); // 각 서브메뉴들을 관리하는 함수 (각 서브메뉴의 최상위 메뉴)
 }
