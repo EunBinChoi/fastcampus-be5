@@ -1,5 +1,7 @@
 package me.day10.smartstore.customer;
 
+import me.day10.smartstore.group.Group;
+
 import java.util.Objects;
 
 public class Customer {
@@ -7,6 +9,7 @@ public class Customer {
     private String cusId;
     private Integer cusTotalTime;
     private Integer cusTotalPay;
+    private Group group; // 현재 분류 기준에 의해 각 고객을 분류된 결과
 
     public Customer() {
     }

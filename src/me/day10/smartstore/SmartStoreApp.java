@@ -45,8 +45,10 @@ public class SmartStoreApp {
                     ((int) (Math.random() * 5) + 1) * 100000));
         }
 
+        allCustomers.refresh(allGroups);
         System.out.println("allCustomers = " + allCustomers);
         System.out.println("allGroups = " + allGroups);
+
         return this; // smartStoreApp
     }
 
