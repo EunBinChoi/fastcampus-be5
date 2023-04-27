@@ -6,8 +6,9 @@ import me.day09.exception_practice.practice05.exception.NullArgumentException;
 
 public class DArray<T> implements Collections<T> { // Dynamic Array
 
-    protected T[] arrays;
     protected static final int DEFAULT = 10;
+
+    protected T[] arrays;
     protected int size;
     protected int capacity;
 

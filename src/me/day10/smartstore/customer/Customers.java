@@ -14,4 +14,6 @@ public class Customers extends DArray {
         return allCustomers;
     }
 
+    private Customers() {}
+
 }

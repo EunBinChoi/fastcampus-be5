@@ -11,7 +11,7 @@ public enum GroupType {
         this.groupType = groupType;
     }
 
-    public GroupType replaceFullName() {
+    public GroupType replaceFullName() { // scanner.next().toLowerCase();
         if (this == N) return NONE;
         else if (this == G) return GENERAL;
         else if (this == V) return VIP;
