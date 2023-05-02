@@ -5,6 +5,7 @@ import me.day11.collection.use.gift.Note;
 import me.day11.collection.use.gift.Pen;
 import me.day11.collection.use.gift.SmartPhone;
 import me.day11.collection.use.gift.Tablet;
+import me.day11.generic.wildcard.course.register.Person;
 
 public class GenericBoundedExample {
     public static void main(String[] args) {
@@ -104,6 +105,6 @@ public class GenericBoundedExample {
 
         //////////////////////////////////////////////////////////////////////////////////////////
 
-//         Gifts<Person> randomPerson = new Gifts<>(); // 불가능, 사람은 아이템이 아니기 때문
+         // Gifts<Person> randomPerson = new Gifts<>(); // 불가능, 사람은 아이템이 아니기 때문
     }
 }

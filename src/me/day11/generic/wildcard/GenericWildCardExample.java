@@ -77,7 +77,7 @@ public class GenericWildCardExample {
         CourseUtils.registerPersonCourse(workerCourse);
         CourseUtils.registerPersonCourse(highStudentCourse);
         CourseUtils.registerPersonCourse(univStudentCourse);
-//        CourseUtils.registerPersonCourse(animalCourse); // 컴파일 오류.
+        //CourseUtils.registerPersonCourse(animalCourse); // 컴파일 오류.
 
         System.out.println("\n\n========================================================= " +
                 "register animal course results =========================================================");

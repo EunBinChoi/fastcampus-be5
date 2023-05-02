@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         GiftBox randomGiftBox1 = new GiftBox();
         randomGiftBox1.setGift(new Tablet(12, "IPAD4-PRO"));
+
         if (randomGiftBox1.getGift() instanceof Tablet) {
             Tablet tablet = (Tablet) randomGiftBox1.getGift(); // Object -> Tablet
             System.out.println(tablet);

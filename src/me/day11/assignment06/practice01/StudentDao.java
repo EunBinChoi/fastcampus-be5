@@ -21,12 +21,12 @@ public class StudentDao {
      * @Param: Student key 값
      * @return: select된 Student 반환
      * */
-    public Student select(String key) {
+    public Student select(String key) { // select * from table where key (id) == ?
         return null;
     }
 
 
-    public Students select(Predicate<Student> condition) {
+    public Students select(Predicate<Student> condition) { // select * from table where age >= 30
         if ( condition == null ) return null;
 
         Students students = new Students();
@@ -47,7 +47,7 @@ public class StudentDao {
     }
 
 
-    public Students select() {
+    public Students select() { // select * from table
         Students studentAll = new Students();
         for ( Student student : map.values() ) {
             studentAll.add(student);
