@@ -1,7 +1,5 @@
 package me.day11.assignment05_review.practice05;
 
-import me.day09.assignment05.practice05.Person;
-
 import java.util.Arrays;
 import java.util.Objects;
 

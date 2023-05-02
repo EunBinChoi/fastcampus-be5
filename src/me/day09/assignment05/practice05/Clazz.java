@@ -68,7 +68,7 @@ public class Clazz implements Cloneable {
     }
 
 
-    @Override
+    @Override // Object class (Native OS clone() 시스템에 의존적인 메소드)
     public Clazz clone() throws CloneNotSupportedException {
         Clazz objectCopyExample = (Clazz) super.clone(); // shallow copy
 

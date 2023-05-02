@@ -1,5 +1,6 @@
 package me.day11.assignment05_review.practice04;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Person implements Comparable<Person> {
@@ -78,4 +79,5 @@ public class Person implements Comparable<Person> {
     public int compareTo(Person o) {
         return name.compareTo(o.name);
     }
+
 }
