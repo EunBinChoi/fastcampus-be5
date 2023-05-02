@@ -1,5 +1,7 @@
 package me.day09.assignment05.practice04;
 
+import me.day09.assignment05.practice04.Person;
+
 import java.util.Arrays;
 
 public class Main {

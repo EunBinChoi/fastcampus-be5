@@ -2,7 +2,7 @@ package me.day09.assignment05.practice05;
 
 import java.util.Objects;
 
-public class Person {
+public class Person { // Comparable: Person 클래스의 객체를 정렬할 때 사용하는 인터페이스
     public enum Gender {MALE, FEMALE}
     private String name;
     private Gender gender;

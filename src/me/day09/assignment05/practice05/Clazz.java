@@ -1,9 +1,11 @@
 package me.day09.assignment05.practice05;
 
+import me.day09.assignment05.practice05.Person;
+
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Clazz {
+public class Clazz implements Cloneable {
     private int intVariable;
     private String strVariable;
     private Person[] personArray; // deep copy

@@ -1,5 +1,8 @@
 package me.day09.assignment05.practice05;
 
+import me.day09.assignment05.practice05.Clazz;
+import me.day09.assignment05.practice05.Person;
+
 public class Main {
     public static void main(String[] args) {
         Clazz clazz1 = new Clazz(10, "abc",

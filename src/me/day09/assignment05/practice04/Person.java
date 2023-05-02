@@ -2,7 +2,8 @@ package me.day09.assignment05.practice04;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable<Person> {
+
     public enum Gender {MALE, FEMALE}
     private String name;
     private Gender gender;
@@ -71,5 +72,10 @@ public class Person {
                 ", birthdate='" + birthdate + '\'' +
                 ", registrationNumber='" + registrationNumber + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return name.compareTo(o.name);
     }
 }
