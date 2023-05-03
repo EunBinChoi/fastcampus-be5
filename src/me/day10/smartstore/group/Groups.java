@@ -17,11 +17,12 @@ public class Groups extends DArray<Group> {
     private Groups() {}
 
     public Group find(GroupType groupType) {
-        for (Group group : arrays) {
-            if (group.getGroupType() == groupType) { // enum의 비교는 equals가 아님
-                return group;
+        for (int i = 0; i < this.size; i++) {
+            if (this.get(i).getGroupType() == groupType) {
+                return this.get(i);
             }
         }
+
         return null;
     }
 }
