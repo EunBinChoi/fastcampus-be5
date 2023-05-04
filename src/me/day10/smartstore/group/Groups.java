@@ -17,12 +17,21 @@ public class Groups extends DArray<Group> {
     private Groups() {}
 
     public Group find(GroupType groupType) {
-        for (int i = 0; i < this.size; i++) {
-            if (this.get(i).getGroupType() == groupType) {
-                return this.get(i);
+        // NOTE: 오류나는 코드
+        for (Group group: arrays) {
+            if (group.getGroupType() == groupType) {
+                return group;
             }
         }
-
         return null;
+
+
+//        for (int i = 0; i < this.size; i++) {
+//            if (this.get(i).getGroupType() == groupType) {
+//                return this.get(i);
+//            }
+//        }
+//
+//        return null;
     }
 }
