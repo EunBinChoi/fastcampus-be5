@@ -6,13 +6,18 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 
-class Student {
+class Student implements Comparable<Student> {
 	private String studentNo;
 	private String name;
 
 	public Student(String studentNo, String name) {
 		this.studentNo = studentNo;
 		this.name = name;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		return 0;
 	}
 }
 public class QueueExample {
@@ -24,7 +29,6 @@ public class QueueExample {
 		// Queue는 인터페이스
 		// Queue는 순서대로 유지하면 되므로 LinkedList를 사용해서 구현
 		Queue<Student> queue = new LinkedList<>();
-
 
 		// 원소 삽입
 		queue.offer(new Student("20211111", "이순신"));

@@ -31,7 +31,8 @@ public class MapExample {
         System.out.println("streamMap2 = " + streamMap2);
         System.out.println();
 
-        Map<Integer, String> map = Map.of(1, "a", 2, "b", 3, "c", 4, "d", 5, "e");
+        Map<Integer, String> map
+                = Map.of(1, "a", 2, "b", 3, "c", 4, "d", 5, "e");
 
         // 원소 추가 => put()
         // 키 저장 순서가 유지되지 않을 수 있음
@@ -77,7 +78,7 @@ public class MapExample {
 
         // Map은 키 값이 인덱스를 대신하기 때문에 인덱스 개념이 없음 (인덱스가 없으므로 인덱스를 통해 원소를 검색하는 함수 없음)
         // Map 내부 반복하려면 반복자를 통해 반복함
-        Iterator<Integer> iterator = map.keySet().iterator();
+        Iterator<Integer> iterator = map.keySet().iterator(); // hash table 를 순회
         while (iterator.hasNext()) {
             Integer i = iterator.next();
             System.out.println("key => " + i + ", value => " + map.get(i));
@@ -85,8 +86,7 @@ public class MapExample {
         System.out.println();
 
         // 원소 반복하기
-        for (Map.Entry<Integer, String> entry: map.entrySet())
-        {
+        for (Map.Entry<Integer, String> entry: map.entrySet()) {
             Integer key = entry.getKey();
             String value = entry.getValue();
             System.out.println( "key => " + key + ", value => " + value);

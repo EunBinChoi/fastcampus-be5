@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         List<String> stringList = init();
 
-//        error(stringList);
+        error(stringList);
 //        solution1(stringList);
 //        solution2(stringList);
 //        solution3(stringList);
@@ -46,6 +46,12 @@ public class Main {
     }
     public static void solution1(List<String> stringList) {
         // 역순으로 순회하며 삭제
+        // "a", "b", "c", "d", "a"
+        //  0    1    2    3    4
+        //  0    1    2    3
+        //  0    1    2
+        //  0    1
+        //  0
         System.out.println("stringList = " + stringList);
         for( int i = stringList.size() - 1; i >= 0; i-- ) {
             String str = stringList.get(i);

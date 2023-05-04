@@ -2,6 +2,7 @@ package me.day11.collection.list;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -118,6 +119,7 @@ public class ListExample {
         // 컬렉션 비어있는지 확인
         System.out.println("list.isEmpty() = " + list.isEmpty());
         System.out.println();
+
 
         /////////////////////////////////////////////////////////////////////////
         // List (컬렉션) -> Array (객체 배열)
