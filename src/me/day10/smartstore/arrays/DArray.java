@@ -13,13 +13,13 @@ public class DArray<T> implements Collections<T> { // Dynamic Array
     protected int capacity;
 
     @SuppressWarnings("unchecked")
-    public DArray() throws ClassCastException {
+    public DArray() {
         arrays = (T[]) new Object[DEFAULT];
         capacity = DEFAULT;
     }
 
     @SuppressWarnings("unchecked")
-    public DArray(int initial) throws ClassCastException {
+    public DArray(int initial) {
         arrays = (T[]) new Object[initial];
         capacity = initial;
     }
