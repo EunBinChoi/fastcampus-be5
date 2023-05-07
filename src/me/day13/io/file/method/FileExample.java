@@ -1,0 +1,54 @@
+package me.day13.io.file.method;
+
+
+import me.day13.io.util.FileUtil;
+
+import java.io.File;
+import java.io.IOException;
+
+public class FileExample {
+
+    static final String path = FileUtil.getOutPath( FileExample.class );
+    public static void main(String[] args) throws IOException {
+
+        // 현재 디렉토리에 폴더 생성
+        final String newDirName = "newFolder";
+        File dir = new File(path + newDirName);
+        if ( !dir.exists() ) dir.mkdir();
+        // mkdir: make directory
+
+        // 현재 디렉토리에 파일 생성
+        final String newFileName = "newFile.txt";
+        File file = new File(dir + File.separator + newFileName);
+        if ( !file.exists() ) file.createNewFile();
+        //if(file.exists()) file.delete(); // 생성한 파일 삭제
+
+
+        // 현재 디렉토리에 파일 리스트 확인
+//        File currDir = new File(path);
+//        File[] files = currDir.listFiles();
+//        for(File f : files) {
+//            System.out.println(f);
+//        }
+//        System.out.println();
+
+        // 재귀적으로 디렉토리 탐색
+        searchFile(new File("./"));
+
+
+        // OS가 무엇인지에 따라서 파일 구분자가 다름
+        // \: 윈도우
+        // /: MacOS
+        System.out.println(File.separator);
+    }
+    private static void searchFile(File file) {
+        if ( file.isDirectory() ) {
+            File[] files = file.listFiles();
+
+            for ( File f : files ) {
+                System.out.println(f);
+                searchFile(f);
+            }
+        }
+    }
+}

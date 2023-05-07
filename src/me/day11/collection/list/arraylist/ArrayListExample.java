@@ -56,6 +56,8 @@ public class ArrayListExample {
 
         arrayList.sort(null); // new ArrayList<Integer>()
         System.out.println("sort() => " + arrayList);
+
+        Collections.sort(arrayList);
         Collections.sort(arrayList, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
