@@ -61,7 +61,7 @@ public class StreamExample {
         int total2 = IntStream.rangeClosed(1, 100)
                 .filter(i -> i % 2 == 0)
 //                .forEach(s -> System.out.println()) // 최종처리 스트림
-                .peek(s -> System.out.println(s)) // 중간처리 스트림
+                .peek(System.out::println) // 중간처리 스트림
                 .sum();
         System.out.println(total2);
 

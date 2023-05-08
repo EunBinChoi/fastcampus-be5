@@ -3,6 +3,7 @@ package me.day12.stream.basics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 class Student {
@@ -127,11 +128,15 @@ public class StreamExample {
         // List<Member>
         final int STUDENT_NUM = 10;
         List<Student> studentList = new ArrayList<>();
+        studentList.add(new Student(Character.toString('a'), 80));
+        studentList.add(new Student(Character.toString('b'), null));
+        studentList.add(new Student(Character.toString('c'), 90));
+        studentList.add(new Student(Character.toString('d'), 100));
 
         // 객체 초기화
-        for (int i = 0; i < STUDENT_NUM; i++) {
-            studentList.add(new Student(Character.toString(i + 'a'), null));
-        }
+//        for (int i = 0; i < STUDENT_NUM; i++) {
+//            studentList.add(new Student(Character.toString(i + 'a'), null));
+//        }
         //System.out.println("studentList = " + studentList);
 
 //        // 일반 반복문 (외부 반복자)를 이용해서 학생 성적 평균
@@ -156,8 +161,9 @@ public class StreamExample {
 
         double average3 = studentList // List<Student>
                         .stream() // Stream<Student>
-                        .mapToInt(s -> s.getScore())// IntStream
-                        .average() // OptionalDouble
+                        .filter(s -> s.getScore() != null)
+                        .mapToInt(s -> s.getScore())
+                        .average()
                         .orElse(0.0);
         System.out.println("average3 = " + average3);
     }

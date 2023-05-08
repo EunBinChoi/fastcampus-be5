@@ -20,6 +20,11 @@ public class OperatorExample {
         // 디폴트 값인 0 리턴
         int sum = personList.stream()
                 .map(Person::getAge).reduce(0, (a, b) -> (a + b));
+
+        // a  b
+        // 0, a  => a
+        // a  b  => a + b
+        // a+b c => a + b+ c
         System.out.println("sum = " + sum);
     }
 }

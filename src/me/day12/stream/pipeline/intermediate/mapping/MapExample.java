@@ -1,5 +1,6 @@
 package me.day12.stream.pipeline.intermediate.mapping;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,13 +33,18 @@ class Person {
     }
 }
 
+class NonException extends RuntimeException {
+    public NonException() {
+    }
+
+    public NonException(String message) {
+        super(message);
+    }
+}
+
 public class MapExample {
     public static void main(String[] args) {
-        List<Person> personList = Arrays.asList(
-                new Person("kim",  30),
-                new Person("lee",  25),
-                new Person("park", 40)
-        );
+        List<Person> personList = new ArrayList<>();
 
         // 사람의 나이를 요소로 하는 새로운 스트림을 생성하고 나이를 출력
         personList.stream()
@@ -48,7 +54,7 @@ public class MapExample {
         // 사람의 나이를 요소로 하는 새로운 스트림을 생성하고 평균 나이 계산
         double average = personList.stream()
                 .mapToInt(Person::getAge)
-                .average().getAsDouble();
+                .average().orElseThrow(() -> {throw new NonException();});
         System.out.println("평균 나이 = " + average);
 
 

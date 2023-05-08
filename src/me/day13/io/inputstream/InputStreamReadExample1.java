@@ -3,18 +3,25 @@ package me.day13.io.inputstream;
 
 import me.day13.io.util.FileUtil;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 public class InputStreamReadExample1 {
     static final String path = FileUtil.getOutPath( InputStreamReadExample1.class );
-    static final String filename = "input_eng.txt"; // "input_kor.txt"
+    static final String filename = "input_kor.txt"; // "input_kor.txt"
+
+    public static void close(Closeable closeable) {
+        if (closeable != null) {
+            try {
+                closeable.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     public static void main(String[] args) {
 
-        try ( InputStream inputStream = new FileInputStream(path + filename) ) {
+        try (InputStream inputStream = new FileInputStream(path + filename)) {
             int readByte;
 
             // 읽을 수 있는 마지막 바이트까지 루프를 돌며 한 바이트씩 읽음
