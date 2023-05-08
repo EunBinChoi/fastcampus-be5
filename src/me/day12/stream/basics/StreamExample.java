@@ -68,6 +68,12 @@ public class StreamExample {
         System.out.println();
 
         // 스트림을 이용해서 짝수만 출력
+        integerList.stream().filter(i -> i % 2 == 0).forEach(System.out::println);
+        List<Integer> evens =
+                integerList.stream().filter(i -> i % 2 == 0).collect(Collectors.toList());
+        System.out.println(evens);
+
+
         integerList.stream()
                 .filter(i -> i % 2 == 0)
                 .forEach(i -> System.out.print(i + ", "));
@@ -96,13 +102,25 @@ public class StreamExample {
         System.out.println("concat2 = " + concat2);
 
         // 스트림을 이용해서 문자열 합치기
-        String concat3 = stringList.stream().collect(Collectors.joining());
-        String concat4 = stringList.stream().reduce((x, y) -> x + y).get();
+        List<String> stringList2 = new ArrayList<>();
 
-        System.out.println("concat3 = " + concat3);
-        System.out.println("concat4 = " + concat4);
+        stringList2.add(null); // "null"
+        System.out.println(stringList2.get(0));
+        stringList2.add("a");
+        stringList2.add("b");
+        stringList2.add("c");
+        String s = stringList2.stream()
+                .reduce((x, y) -> x + y)
+                .orElse("");
+        System.out.println(s);
 
-        System.out.println();
+//        String concat3 = stringList.stream().collect(Collectors.joining());
+//        String concat4 = stringList.stream().reduce((x, y) -> x + y).get();
+//
+//        System.out.println("concat3 = " + concat3);
+//        System.out.println("concat4 = " + concat4);
+//
+//        System.out.println();
     }
     public static void average() {
         //////////////////////////////////////////////////////////
@@ -112,36 +130,35 @@ public class StreamExample {
 
         // 객체 초기화
         for (int i = 0; i < STUDENT_NUM; i++) {
-            studentList.add(new Student(Character.toString(i + 'a'), (int)(Math.random() * 101)));
+            studentList.add(new Student(Character.toString(i + 'a'), null));
         }
         //System.out.println("studentList = " + studentList);
 
-        // 일반 반복문 (외부 반복자)를 이용해서 학생 성적 평균
-        double average1 = 0.0;
-        for (int i = 0; i < studentList.size(); i++) {
-            average1 += studentList.get(i).getScore();
-        }
-        average1 /= studentList.size();
-        System.out.println("average1 = " + average1);
-
-        // Iterator 이용해서 학생 성적 평균
-        double average2 = 0.0;
-        Iterator<Student> iterator1 = studentList.iterator();
-        while (iterator1.hasNext()) {
-            Student student = iterator1.next();
-            average2 += student.getScore();
-        }
-        average2 /= studentList.size();
-        System.out.println("average2 = " + average2);
+//        // 일반 반복문 (외부 반복자)를 이용해서 학생 성적 평균
+//        double average1 = 0.0;
+//        for (int i = 0; i < studentList.size(); i++) {
+//            average1 += studentList.get(i).getScore();
+//        }
+//        average1 /= studentList.size();
+//        System.out.println("average1 = " + average1);
+//
+//        // Iterator 이용해서 학생 성적 평균
+//        double average2 = 0.0;
+//        Iterator<Student> iterator1 = studentList.iterator();
+//        while (iterator1.hasNext()) {
+//            Student student = iterator1.next();
+//            average2 += student.getScore();
+//        }
+//        average2 /= studentList.size();
+//        System.out.println("average2 = " + average2);
 
         // 스트림을 이용해서 학생 성적 평균
 
         double average3 = studentList // List<Student>
-                .stream() // Stream<Student>
-                .mapToInt(s -> s.getScore())// IntStream
-                .average() // OptionalDouble
-                .orElse(0.0); // default 0.0
-//                .getAsDouble(); // double
+                        .stream() // Stream<Student>
+                        .mapToInt(s -> s.getScore())// IntStream
+                        .average() // OptionalDouble
+                        .orElse(0.0);
         System.out.println("average3 = " + average3);
     }
 
