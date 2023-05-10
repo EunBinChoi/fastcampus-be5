@@ -48,6 +48,7 @@ public class Main {
         ) {
             // 이미지 복사
             int data;
+            byte[] bytes = new byte[1024];
             while ( (data = bis.read()) != -1 ) {
                 bos.write(data);
             }

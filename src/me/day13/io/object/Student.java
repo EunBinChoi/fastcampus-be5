@@ -3,7 +3,8 @@ package me.day13.io.object;
 import java.io.Serializable;
 
 public class Student implements Serializable {
-    private static final long serialVersionUID = -3576702769350958892L;
+    // reflection
+    private static final long serialVersionUID = -3576702769350958893L; // random
 
 
     // 직렬화할 때 static / transient 변수는 제외
