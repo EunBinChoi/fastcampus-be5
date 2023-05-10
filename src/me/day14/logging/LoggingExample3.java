@@ -13,11 +13,13 @@ public class LoggingExample3 {
         // remove default log handler
         System.out.println(logger.getParent());
         logger.setUseParentHandlers(false); // logger propagate (child -> parent)
+        logger.setLevel(Level.ALL);
+
 
         // add new log handler (add logger handler to root logger)
         Handler handler = new ConsoleHandler();
         handler.setFormatter(new MyLogFormatter());
-        handler.setLevel(Level.ALL);
+        handler.setLevel(Level.CONFIG);
 
         logger.addHandler(handler);
 
@@ -34,6 +36,10 @@ public class LoggingExample3 {
         logger.config("Config logging");
         logger.config("Config logging");
         logger.config("Config logging");
+
+        logger.fine("Fine logging");
+        logger.fine("Fine logging");
+        logger.fine("Fine logging");
     }
 
     public static class MyLogFormatter extends Formatter {

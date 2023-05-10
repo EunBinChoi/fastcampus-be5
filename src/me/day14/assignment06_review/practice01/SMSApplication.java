@@ -1,12 +1,5 @@
 package me.day14.assignment06_review.practice01;
 
-import me.day11.assignment06.practice01.Column;
-import me.day11.assignment06.practice01.DataBase;
-import me.day11.assignment06.practice01.Student;
-import me.day11.assignment06.practice01.StudentDao;
-import me.day11.assignment06.practice01.Students;
-import me.day11.assignment06.practice01.Table;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;

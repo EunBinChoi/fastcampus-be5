@@ -1,7 +1,5 @@
 package me.day14.assignment06_review.practice03;
 
-import me.day11.assignment06.practice03.Student;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

@@ -1,7 +1,5 @@
 package me.day14.assignment06_review.practice01;
 
-import me.day11.assignment06.practice01.Column;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
