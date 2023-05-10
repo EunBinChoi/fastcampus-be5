@@ -12,6 +12,12 @@ public class Main {
                 "    \"Million tonne punch\",\n" +
                 "    \"Damage resistance\",\n" +
                 "    \"Superhuman reflexes\"\n" +
+                "  ],\n" +
+                "  \"secretIdentity2\": \"Jane Wilson\",\n" +
+                "  \"powers2\": [\n" +
+                "    \"Million tonne punch\",\n" +
+                "    \"Damage resistance\",\n" +
+                "    \"Superhuman reflexes\"\n" +
                 "  ]\n" +
                 "}";
 
@@ -27,26 +33,34 @@ public class Main {
 
     public static Map<String, Object> parseJsonString(String jsonString) {
         String[] jsonArr = jsonString.replaceAll("[{}\\[\\]\"]", "").split(",");
+        Arrays.stream(jsonArr).forEach(System.out::println);
+
 
         String key = "";
         String value = "";
         String saveKey = "";
-        List<String> values = new LinkedList<>(); // value가 여러개일 수 있음을 가정
-        Map<String, Object> jsonMap = new HashMap<>();
+        List<String> values = new LinkedList<>(); // 여러개 value 저장
+        Map<String, Object> jsonMap = new HashMap<>(); // 실제 parsing 결과
         for (int i = 0; i < jsonArr.length; i++) {
             if (jsonArr[i].contains(":")) {
                 if (values.size() > 1) {
-                    jsonMap.put(saveKey, values);
+                    jsonMap.put(saveKey.strip(), values);
                 }
+                // 초기화
                 saveKey = "";
                 values = new LinkedList<>();
 
+                ///////////////////////////////
+                // 일반적인 경우
                 int idx = jsonArr[i].indexOf(":");
                 key = jsonArr[i].substring(0, idx);
                 value = jsonArr[i].substring(idx + 1);
 
                 jsonMap.put(key.strip(), value.strip());
-                values.add(value.strip());
+                ///////////////////////////////
+
+                values.add(value.strip()); // 임시 넣어놈
+
             } else {
                 saveKey = key;
                 values.add(jsonArr[i].strip());
