@@ -1,7 +1,5 @@
 package me.day14.assignment06_review.practice02;
 
-import me.day11.assignment06.practice02.Student;
-
 import java.util.PriorityQueue;
 import java.util.Queue;
 

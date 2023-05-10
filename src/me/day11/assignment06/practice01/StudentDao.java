@@ -22,7 +22,8 @@ public class StudentDao {
      * @return: select된 Student 반환
      * */
     public Student select(String key) { // select * from table where key (id) == ?
-        return null;
+        if (key == null) return null;
+        return map.get(key);
     }
 
 
@@ -35,7 +36,7 @@ public class StudentDao {
         while ( iterator.hasNext() ) {
             String num = iterator.next();
             Student student = map.get(num);
-            if ( student == null ) continue;;
+            if ( student == null ) continue;
 
             if ( condition.test(student) ) {
                 students.add(student);
@@ -62,7 +63,11 @@ public class StudentDao {
      * @exception: 현재 DB에 있는 객체들과 중복된 키를 가질 수 없음
      * */
     public Student insert(String key, Student student) {
-        return null;
+        if (key == null) return null;
+        if (map.containsKey(key)) return null;
+
+        map.put(key, student); // add, set
+        return student;
     }
 
     /**
@@ -71,7 +76,15 @@ public class StudentDao {
      * @exception: 현재 DB에 있는 객체들과 중복된 키를 가질 수 없음
      * */
     public int insert(List<String> keys, Students students) {
-        return 0;
+        if (keys == null) return -1;
+        if (keys.size() != students.size()) return -1;
+
+        int count = 0;
+        for (int i = 0; i < keys.size(); i++) {
+            insert(keys.get(i), students.get(i));
+            count++;
+        }
+        return count;
     }
 
     public int update(Predicate<Student> condition, Column column, Object value) {
@@ -137,7 +150,10 @@ public class StudentDao {
      * @return: 삭제된 Student 반환
      * */
     public Student delete(String key) {
-        return null;
+        if (key == null) return  null;
+        if (!map.containsKey(key)) return null;
+
+        return map.remove(key);
     }
 
 }

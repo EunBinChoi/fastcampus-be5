@@ -31,7 +31,7 @@ public class Main {
         String key = "";
         String value = "";
         String saveKey = "";
-        List<String> values = new LinkedList<>();
+        List<String> values = new LinkedList<>(); // value가 여러개일 수 있음을 가정
         Map<String, Object> jsonMap = new HashMap<>();
         for (int i = 0; i < jsonArr.length; i++) {
             if (jsonArr[i].contains(":")) {

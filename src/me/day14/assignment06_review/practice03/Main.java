@@ -37,10 +37,14 @@ public class Main {
     public static List<Student> lower(int score) {
         return studentList.stream()
                 .filter(s -> s.getScore() < score)
-                .sorted((o1, o2) -> o1.getScore().compareTo(o2.getScore()) * -1)
+                //.sorted((o1, o2) -> o1.getScore().compareTo(o2.getScore()) * -1)
+                .sorted(Comparator.comparing(Student::getScore).reversed())
                 .collect(Collectors.toList());
     }
     public static double average() {
-        return studentList.stream().mapToInt(s -> s.getScore()).average().orElse(0.0);
+        return studentList.stream()
+                .mapToInt(Student::getScore)
+                .average()
+                .orElse(0.0);
     }
 }

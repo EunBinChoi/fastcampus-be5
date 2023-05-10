@@ -4,6 +4,7 @@ package me.day13.io_practice.practice01;
 import me.day13.io.util.FileUtil;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -49,8 +50,8 @@ public class Main {
             // 이미지 복사
             int data;
             byte[] bytes = new byte[1024];
-            while ( (data = bis.read()) != -1 ) {
-                bos.write(data);
+            while ( (data = bis.read(bytes)) != -1 ) {
+                bos.write(Arrays.copyOfRange(bytes, 0, data));
             }
             bos.flush();
             fos.flush();
