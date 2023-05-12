@@ -9,6 +9,7 @@ public class LoggingExample1 {
     private static Logger logger = Logger.getLogger(LoggingExample1.class.getName());
     // 등록된 로거가 없어서 rootLogger를 가지고 옴
     public static void main(String[] args) {
+
         // Logger#log(level, message)
         logger.log(Level.WARNING, "Warning Logging");
         logger.log(Level.INFO, "Info Logging");
