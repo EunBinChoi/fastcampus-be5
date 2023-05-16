@@ -71,6 +71,5 @@ public class CsvSourceAnnotationTest {
     }
     // ParameterizedTest
     // 1 반복 테스트 message={value=10, name='자바 스터디', time=2020-04-02T14:20:21, active=true}
-    // 2 반복 테스트 message={value=10, name='자바 스터디', time=2020-04-02T14:20:21, active=true}
-    // 3 반복 테스트 message={value=10, name='자바 스터디', time=2020-04-02T14:20:21, active=true}
+    // 2 반복 테스트 message={value=20, name='스프링', time=2020-04-02T14:20:21, active=false}
 }

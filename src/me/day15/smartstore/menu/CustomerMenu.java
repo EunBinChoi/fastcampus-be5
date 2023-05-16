@@ -32,8 +32,12 @@ public class CustomerMenu implements Menu {
     public void manage() {
         while ( true ) {
             int choice = chooseMenu(
-                    new String[]{"Set Customer Data", "View Customer Data",
-                            "Update Customer Data", "Delete Customer Data", "Back"});
+                    new String[]{
+                            "Add Customer",
+                            "View Customer",
+                            "Update Customer",
+                            "Delete Customer",
+                            "Back"});
 
             if (choice == 1) {
                 int size = 0;
