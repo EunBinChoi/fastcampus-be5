@@ -1,34 +1,53 @@
 package me.day14.junit_practice;
 
+import me.day14.junit_practice.exception.NullArgumentException;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
 public class VendingMachine {
-    private int money;
-    private int selectedProduct;
+    static Scanner scanner = new Scanner(System.in);
 
-    public VendingMachine() {
+    Integer inputMoney = 0;
+    List<Drink> selectedDrinks = new LinkedList<>();
+    ChangeModule changeModule;
+
+
+    public VendingMachine(ChangeModule changeModule) {
+        this.changeModule = changeModule;
     }
 
-    public int getMoney() {
-        return money;
+    public int getInputMoney() {
+        return inputMoney;
     }
 
-    public void setInputMoney(int money) {
-        if(money < 0) {
-            throw new IllegalArgumentException("투입 금액은 0보다 커야 합니다. : " + money);
+    public void setInputMoney(Integer inputMoney) {
+        if (inputMoney == null) {
+            throw new NullArgumentException("투입 금액은 널일 수 없습니다.");
         }
-        this.money += money;
+        if (inputMoney < 0) {
+            throw new IllegalArgumentException(String.format("투입 금액 (%d)은 0보다 커야 합니다.", inputMoney));
+        }
+        this.inputMoney += inputMoney;
     }
 
-    public void setSelectedProduct(int selectedProduct) {
-        this.selectedProduct = selectedProduct;
+    public Integer totalPrice() {
+        if (selectedDrinks.size() == 0) {
+            throw new RuntimeException("선택한 물건이 없습니다.");
+        }
+        return selectedDrinks.stream().mapToInt(Drink::getPrice).sum();
     }
 
-    public int getSelectedProduct() {
-        return selectedProduct;
+    public void pay() {
+        Integer total = totalPrice();
+        if (inputMoney < total) {
+            throw new RuntimeException(String.format("총 선택한 음료 금액 (%d)은 투입 금액 (%d)보다 작거나 같아야합니다.", total, inputMoney));
+        }
+        inputMoney -= total;
     }
 
-    public int inputMoneyAndProductDeduct() {
-        money -= selectedProduct;
-        return money;
+    public CoinMap change() {
+        return changeModule.getChangeCoinSet(inputMoney);
     }
-
 }

@@ -1,35 +1,57 @@
 package me.day14.junit_practice;
 
+import me.day14.junit_practice.exception.NullArgumentException;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VendingMachineTest {
+    ChangeModule cm;
+    VendingMachine vm;
+
+
+    @BeforeEach
+    void 테스트_객체_생성() throws Exception {
+        cm = new ChangeModule();
+        vm = new VendingMachine(cm);
+    }
+
+    @AfterEach
+    void 테스트_소멸_생성() throws Exception {
+        cm = null;
+        vm = null;
+    }
 
     @Test
-    public void 손님이_선택한_물품가격을_투입금액에서_차감한다() throws Exception {
-        VendingMachine vm = new VendingMachine();
+    void 투입_금액_널_테스트() throws Exception {
+        assertThrows(NullArgumentException.class, () -> vm.setInputMoney(null));
+    }
+
+    @Test
+    void 투입_금액_부족_테스트() throws Exception {
         vm.setInputMoney(1000);
-        vm.setSelectedProduct(650);
-        vm.inputMoneyAndProductDeduct();
-
-        assertEquals(350, vm.getMoney(), "손님이 선택한 물품 가격을 투입 금액에서 차감한다");
+        vm.selectedDrinks.add(new Drink("게토레이", 600));
+        vm.selectedDrinks.add(new Drink("생수", 1000));
+        assertThrows(RuntimeException.class, () -> vm.pay());
     }
 
     @Test
-    public void 손님이_구매하기위해_넣은금액을_확인한다() throws Exception {
-        VendingMachine vm = new VendingMachine();
-        int money = vm.getMoney();
-
-        assertNotNull(money);
+    void 선택한_물품_널_테스트() throws Exception {
+        vm.setInputMoney(1000);
+        assertThrows(RuntimeException.class, () -> vm.pay());
     }
 
     @Test
-    public void 손님이_넣은_금액이_0이하일수없다() throws Exception {
-        VendingMachine vm = new VendingMachine();
-        vm.setInputMoney(-1);
-//        vm.setInputMoney(1000);
-
-        assertTrue(vm.getMoney() > 0, "투입 금액은 0이하 일수 없다");
+    void 잔돈_모듈_정상_테스트() throws Exception {
+        vm.setInputMoney(2500);
+        vm.selectedDrinks.add(new Drink("게토레이", 600));
+        vm.selectedDrinks.add(new Drink("생수", 1000));
+        vm.pay();
+        CoinMap coinMap = vm.change();
+        System.out.println(coinMap);
+        assertEquals(coinMap.getValue(COIN.KRW500), 1);
+        assertEquals(coinMap.getValue(COIN.KRW100), 4);
     }
 }

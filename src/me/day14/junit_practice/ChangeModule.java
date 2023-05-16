@@ -1,27 +1,22 @@
 package me.day14.junit_practice;
 
 public class ChangeModule {
-    enum COIN {
-        KRW500(500), KRW100(100), KRW50(50), KRW10(10);
-        private int value;
-        COIN(int value){
-            this.value = value;
-        }
-    }
 
-    public CoinSet getChangeCoinSet(int changeAmount) {
-        CoinSet coinSet = new CoinSet();
+    public CoinMap getChangeCoinSet(int changeAmount) {
+        CoinMap coinMap = new CoinMap();
         int remainChangeAmount = changeAmount;
-        for(COIN coin : COIN.values()) {
-            remainChangeAmount = addCoinsToCoinSet(remainChangeAmount, coinSet, coin.value);
+        for (int i = 0; i < COIN.values().length; i++) {
+            remainChangeAmount = addCoinsToCoinSet(remainChangeAmount, coinMap, COIN.values()[i], COIN.values()[i].getValue());
         }
-        return coinSet;
+        return coinMap;
     }
 
-    private int addCoinsToCoinSet(int remainChangeAmount, CoinSet coinSet, int coin) {
-        while (remainChangeAmount >= coin) {
-            remainChangeAmount -= coin;
-            coinSet.add(coin);
+    private int addCoinsToCoinSet(int remainChangeAmount, CoinMap coinMap, COIN coin, int coinVal) {
+        int count = 0;
+        while (remainChangeAmount >= coinVal) {
+            count++;
+            remainChangeAmount -= coinVal;
+            coinMap.put(coin, count);
         }
         return remainChangeAmount;
     }
