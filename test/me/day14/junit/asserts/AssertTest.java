@@ -1,8 +1,6 @@
 package me.day14.junit.asserts;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledIf;
 
 import java.util.List;
 
@@ -77,7 +75,6 @@ public class AssertTest {
         assertNotNull(s);
     }
 
-    @Disabled
     @Test
     void failTest() {
         fail("fail test", new RuntimeException());

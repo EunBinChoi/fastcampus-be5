@@ -8,7 +8,7 @@ public class VendingMachine {
     }
 
     public int getMoney() {
-        return this.money;
+        return money;
     }
 
     public void setInputMoney(int money) {
@@ -23,12 +23,12 @@ public class VendingMachine {
     }
 
     public int getSelectedProduct() {
-        return this.selectedProduct;
+        return selectedProduct;
     }
 
     public int inputMoneyAndProductDeduct() {
-        this.money -= this.selectedProduct;
-        return this.money;
+        money -= selectedProduct;
+        return money;
     }
 
 }
