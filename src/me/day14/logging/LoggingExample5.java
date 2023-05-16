@@ -38,5 +38,6 @@ public class LoggingExample5 {
         // logging
         logger.warning("Warning logging");
         logger.info("Info logging");
+        logger.config("Config logging");
     }
 }

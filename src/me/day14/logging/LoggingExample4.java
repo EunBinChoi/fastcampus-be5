@@ -14,7 +14,7 @@ public class LoggingExample4 {
         // add new log handler
         Handler handler = new ConsoleHandler();
         handler.setFormatter(new SimpleFormatter() {
-            private static final String format = "[%1$tF %1$tT] [%2$-7s] %3$s %n";
+            private static final String format = "[%1$tF %1$tT] [%2$10s] %3$s %n";
 
             @Override
             public synchronized String format(LogRecord lr) {

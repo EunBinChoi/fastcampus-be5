@@ -28,7 +28,7 @@ public class CustomLogger {
 
     public CustomLogger() {
         try {
-            logger.setUseParentHandlers(false);
+            // logger.setUseParentHandlers(false);
 
             infoFileHandler = new FileHandler(infoFileName, false); // append mode: true
             warnFileHandler = new FileHandler(warnFileName, false); // append mode: true
@@ -39,10 +39,10 @@ public class CustomLogger {
             severeFileHandler.setFormatter(new SimpleFormatter());
 
 
-            logger.setLevel(Level.INFO); // root logger
-//            infoFileHandler.setLevel(Level.INFO); // >= Level.INFO
-//            warnFileHandler.setLevel(Level.WARNING); // >= Level.WARNING
-//            severeFileHandler.setLevel(Level.SEVERE); // >= Level.SEVERE
+            // logger.setLevel(Level.WARNING); // root logger
+            // infoFileHandler.setLevel(Level.INFO); // >= Level.INFO
+            // warnFileHandler.setLevel(Level.WARNING); // >= Level.WARNING
+            // severeFileHandler.setLevel(Level.SEVERE); // >= Level.SEVERE
 
             infoFileHandler.setFilter((record) -> record.getLevel() == Level.INFO); // == Level.INFO
             warnFileHandler.setFilter((record) -> record.getLevel() == Level.WARNING); // == Level.WARNING
