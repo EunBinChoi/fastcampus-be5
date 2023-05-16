@@ -1,5 +1,6 @@
 package me.day14.junit.test;
 
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 // 1000원을 주면 1개의 로또를 생성해주는 클래스
+/*
+* 1. money가 올바른 금액이 아닐 때
+* 2. 로또번호가 6개 아닐 때
+* 3. 로또번호가 1 ~ 45 사이가 아닐 때
+* */
 public class LottoNumberGenerator { // 1 ~ 45번 6개
     public List<Integer> generate(final int money) { // test code: 3개 (개발할 때 개발자가 고려한 사항)
         // 새로운 기능 추가
@@ -93,8 +99,8 @@ public class LottoNumberGenerator { // 1 ~ 45번 6개
         final int price = 2000;
 
         // when
-        final RuntimeException exception = assertThrows(
-                RuntimeException.class,
+        final Exception exception = assertThrows(
+                RuntimeException.class, // IllegalArgumentException (X), Exception (O)
                 () -> lottoNumberGenerator.generate(price));
 
         // then

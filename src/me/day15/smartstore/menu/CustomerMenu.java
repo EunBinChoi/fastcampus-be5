@@ -135,7 +135,6 @@ public class CustomerMenu implements Menu {
 
         allCustomers.pop(custNo - 1);
         viewCustomerData();
-
     }
 
     private int getCustomerSizeToAdd() {

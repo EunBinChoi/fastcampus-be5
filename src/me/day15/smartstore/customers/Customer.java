@@ -9,6 +9,8 @@ public class Customer implements Comparable<Customer> {
     private String name;
     private Integer spentTime;
     private Integer totalPay;
+
+    // @TODO: Group -> GroupType으로 변경하는 게 좋을듯
     private Group group;
 
     public Customer() {

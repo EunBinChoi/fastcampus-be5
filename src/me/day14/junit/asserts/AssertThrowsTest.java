@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class CustomException extends Exception{
+class CustomException extends Exception {
     public CustomException(String message) {
         super(message);
     }

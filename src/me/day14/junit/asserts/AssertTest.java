@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIf;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +14,7 @@ public class AssertTest {
 
     @Test
     void assertArrayEqualsTest() {
-        int[] integerList1 = new int[] {1, 2, 3, 4};
+        int[] integerList1 = new int[] {1, 2, 3, 4, 5};
         int[] integerList2 = new int[] {1, 2, 3, 4};
         assertArrayEquals(integerList1, integerList2);
     }
@@ -21,8 +23,7 @@ public class AssertTest {
     void assertListEqualsTest() {
         List<Integer> integerList1 = List.of(1, 2, 3, 4);
         List<Integer> integerList2 = List.of(1, 2, 3, 4);
-        assertEquals(integerList1.size(), integerList2.size());
-        assertAll(() -> integerList1.equals(integerList2));
+        assertEquals(integerList1, integerList2);
     }
 
     @Test
