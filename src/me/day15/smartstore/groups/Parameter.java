@@ -6,8 +6,7 @@ public class Parameter {
     private Integer minimumSpentTime;
     private Integer minimumTotalPay;
 
-    public Parameter() {
-    }
+    public Parameter() {}
 
     public Parameter(Integer minimumSpentTime, Integer minimumTotalPay) {
         this.minimumSpentTime = minimumSpentTime;

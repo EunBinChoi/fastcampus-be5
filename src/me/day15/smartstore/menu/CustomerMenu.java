@@ -57,8 +57,11 @@ public class CustomerMenu implements Menu {
 
             while ( true ) {
                 int choice = chooseMenu(
-                        new String[]{"Customer Name", "Customer ID",
-                                "Customer Spent Time", "Customer Total Pay", "Back"});
+                        new String[]{"Customer Name",
+                                "Customer ID",
+                                "Customer Spent Time",
+                                "Customer Total Pay",
+                                "Back"});
                 if (choice == 1) setCustomerName(customer);
                 else if (choice == 2) setCustomerUserId(customer);
                 else if (choice == 3) setCustomerSpentTime(customer);
@@ -108,8 +111,11 @@ public class CustomerMenu implements Menu {
 
         while ( true ) {
             int choice = chooseMenu(
-                    new String[]{"Customer Name", "Customer ID",
-                            "Customer Spent Time", "Customer Total Pay", "Back"});
+                    new String[]{"Customer Name",
+                            "Customer ID",
+                            "Customer Spent Time",
+                            "Customer Total Pay",
+                            "Back"});
 
             if (choice == 1) setCustomerName(customer);
             else if (choice == 2) setCustomerUserId(customer);
