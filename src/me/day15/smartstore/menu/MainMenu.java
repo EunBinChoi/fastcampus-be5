@@ -1,6 +1,5 @@
 package me.day15.smartstore.menu;
 
-
 public class MainMenu implements Menu {
     private final CustomerMenu customerMenu = CustomerMenu.getInstance();
     private final GroupMenu groupMenu = GroupMenu.getInstance();

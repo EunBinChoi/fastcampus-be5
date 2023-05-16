@@ -1,6 +1,7 @@
 package me.day14.logging.custom;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +14,10 @@ public class CustomLogger {
     private FileHandler warnFileHandler;
     private FileHandler severeFileHandler;
 
-    private static final String path = CustomLogger.class.getResource("").getPath();
-    private static final String infoFileName = path + "info.log";
-    private static final String warnFileName = path + "warn.log";
-    private static final String severeFileName = path + "severe.log";
+    //private static final String path = CustomLogger.class.getResource("").getPath();
+    private static final String infoFileName = LocalDateTime.now() + "_info.log";
+    private static final String warnFileName = LocalDateTime.now() + "_warn.log";
+    private static final String severeFileName = LocalDateTime.now() + "_severe.log";
 
     public static CustomLogger getInstance() {
         if (customLogger == null) {

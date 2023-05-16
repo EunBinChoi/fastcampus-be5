@@ -50,7 +50,7 @@ public class SmartStoreApplication {
     private void details() {
         System.out.println("\n\n===========================================");
         System.out.println(" Title : SmartStore Customer Segmentation");
-        System.out.println(" Release Date : 23.04.24");
+        System.out.println(" Release Date : 23.05.16");
         System.out.println(" Copyright 2023 Eunbin All rights reserved.");
         System.out.println("===========================================\n");
     }
