@@ -30,7 +30,7 @@ public class MainMenu implements Menu {
             else if (choice == 2) customerMenu.manage();
             else if (choice == 3) summaryMenu.manage();
             else { // choice == 4
-                System.out.println("Program Finished");
+                System.out.println("Program Finished.");
                 break;
             }
         }

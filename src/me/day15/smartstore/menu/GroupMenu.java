@@ -9,6 +9,7 @@ import me.day15.smartstore.groups.GroupType;
 import me.day15.smartstore.groups.Groups;
 import me.day15.smartstore.groups.Parameter;
 import me.day15.smartstore.util.Message;
+import me.day15.smartstore.util.Util;
 
 public class GroupMenu implements Menu {
 
@@ -53,8 +54,11 @@ public class GroupMenu implements Menu {
     @Override
     public void manage() {
         while ( true ) {
-            int choice = chooseMenu(
-                    new String[]{"Set Parameter", "View Parameter", "Update Parameter", "Back"});
+            int choice = chooseMenu(new String[]{
+                            "Set Parameter",
+                            "View Parameter",
+                            "Update Parameter",
+                            "Back"});
 
             if (choice == 1) {
                 setParameter();
@@ -89,7 +93,10 @@ public class GroupMenu implements Menu {
                 Parameter param = new Parameter();
 
                 while ( true ) {
-                    int choice = chooseMenu(new String[]{"Minimum Spent Time", "Minimum Total Pay", "Back"});
+                    int choice = chooseMenu(new String[]{
+                            "Minimum Spent Time",
+                            "Minimum Total Pay",
+                            "Back"});
                     if (choice == 1) {
                         setParameterMinimumSpentTime(param);
                     } else if (choice == 2) {
@@ -98,9 +105,14 @@ public class GroupMenu implements Menu {
 //                    else System.out.println("\n" + Message.ERR_MSG_INVALID_INPUT_RANGE);
                 }
 
-                allGroups.add(new Group(groupType, param));
-                allCustomers.refresh(allGroups);
-                System.out.println("\n" + grp);
+                if (Util.isAllNonNUll(param, param.getMinimumSpentTime(), param.getMinimumTotalPay())) {
+                    Group newGrp = allGroups.find(groupType);
+                    newGrp.setParam(param);
+                    allCustomers.refresh(allGroups);
+                    System.out.println("\n" + newGrp);
+                } else {
+                    System.out.println("No parameter is added. Please fill out all information.");
+                }
             }
         }
     }
@@ -138,7 +150,7 @@ public class GroupMenu implements Menu {
             }
 
             Group grp = allGroups.find(groupType);
-            if (grp.getParam() == null) {
+            if (grp == null || grp.getParam() == null) {
                 System.out.println("\nNo parameter. Set the parameter first.");
                 return;
             }
@@ -147,7 +159,10 @@ public class GroupMenu implements Menu {
             Parameter param = grp.getParam();
 
             while ( true ) {
-                int choice = chooseMenu(new String[]{"Minimum Spent Time", "Minimum Total Pay", "Back"});
+                int choice = chooseMenu(new String[]{
+                        "Minimum Spent Time",
+                        "Minimum Total Pay",
+                        "Back"});
                 if (choice == 1) {
                     setParameterMinimumSpentTime(param);
                 } else if (choice == 2) {

@@ -43,7 +43,7 @@ public class ClassifiedCustomers extends Customers {
         return "ClassifiedCustomers{" +
                 "group=" + group +
                 ", size=" + size +
-                ", customers=" + Arrays.toString(customers) +
+                ", customers=" + Arrays.toString(arrays) +
                 '}';
     }
 }

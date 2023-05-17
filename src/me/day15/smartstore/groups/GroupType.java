@@ -10,13 +10,6 @@ public enum GroupType {
         this.groupType = groupType;
     }
 
-    public String getGroupType() {
-        return this.groupType;
-    }
-
-    public void setGroupType(String groupType) {
-        this.groupType = groupType;
-    }
 
     public GroupType replaceFullName() {
         if (this == N) return NONE;

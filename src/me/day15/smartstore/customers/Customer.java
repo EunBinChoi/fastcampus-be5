@@ -10,7 +10,7 @@ public class Customer implements Comparable<Customer> {
     private Integer spentTime;
     private Integer totalPay;
 
-    // @TODO: Group -> GroupType으로 변경하는 게 좋을듯
+    // @TODO: Group -> GroupType으로 변경
     private Group group;
 
     public Customer() {
@@ -92,7 +92,7 @@ public class Customer implements Comparable<Customer> {
                 ", name='" + name + '\'' +
                 ", spentTime=" + spentTime +
                 ", totalPay=" + totalPay +
-                ", group=" + group +
+                ", group=" + group.getType() +
                 '}';
     }
 }

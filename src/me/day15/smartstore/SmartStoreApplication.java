@@ -30,11 +30,15 @@ public class SmartStoreApplication {
 
 
     public SmartStoreApplication test() {
-        allGroups.add(new Group( GroupType.GENERAL, new Parameter(10, 100000)) );
-        allGroups.add(new Group( GroupType.VIP, new Parameter(20, 200000)) );
-        allGroups.add(new Group( GroupType.VVIP, new Parameter(30, 300000)) );
+        for (int i = 1; i < allGroups.size(); i++) {
+            allGroups.get(i).setParam(new Parameter((i+1)*10, (i+1)*100000));
+        }
 
-        for (int i = 0; i < 20; ++i) {
+        // allGroups.add(new Group( GroupType.GENERAL, new Parameter(10, 100000)) );
+        // allGroups.add(new Group( GroupType.VIP, new Parameter(20, 200000)) );
+        // allGroups.add(new Group( GroupType.VVIP, new Parameter(30, 300000)) );
+
+        for (int i = 0; i < 20; i++) {
             allCustomers.add(new Customer(
                     Character.toString(
                                (char) ('a' + i)),

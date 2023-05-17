@@ -15,7 +15,7 @@ public interface Menu {
         return (strings.length > 1) ? "" : str;
     }
 
-    default String nextLine(String messageForEnd) throws InputEndException {
+    default String nextLine(String messageForEnd) {
         System.out.println("\n** Press 'end', if you want to exit! **");
         String str = scanner.nextLine().toUpperCase();
         if (str.equals(messageForEnd)) throw new InputEndException();

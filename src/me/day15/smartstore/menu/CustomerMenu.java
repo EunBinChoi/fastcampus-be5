@@ -7,8 +7,10 @@ import me.day15.smartstore.exception.InputEmptyException;
 import me.day15.smartstore.exception.InputEndException;
 import me.day15.smartstore.exception.InputRangeException;
 import me.day15.smartstore.groups.Group;
+import me.day15.smartstore.groups.GroupType;
 import me.day15.smartstore.groups.Groups;
 import me.day15.smartstore.util.Message;
+import me.day15.smartstore.util.Util;
 
 public class CustomerMenu implements Menu {
 
@@ -42,7 +44,7 @@ public class CustomerMenu implements Menu {
             if (choice == 1) {
                 int size = 0;
                 size = getCustomerSizeToAdd();
-                setCustomerData(size);
+                addCustomerData(size);
             } else if (choice == 2) viewCustomerData();
             else if (choice == 3) updateCustomerData();
             else if (choice == 4) deleteCustomerData();
@@ -50,7 +52,7 @@ public class CustomerMenu implements Menu {
         }
     }
 
-    public void setCustomerData(int size) {
+    public void addCustomerData(int size) {
         for (int i = 0; i < size; ++i) {
             Customer customer = new Customer();
             System.out.println("\n====== Customer " + (i + 1) + " Info. ======");
@@ -70,11 +72,17 @@ public class CustomerMenu implements Menu {
 
             }
 
-            Group grp = allGroups.findGroupFor(customer);
-            if (grp == null) customer.setGroup(null);
-            else if (!grp.equals(customer.getGroup())) customer.setGroup(grp);
-
-            allCustomers.add(customer);
+            if (Util.isAllNonNUll(customer, customer.getName(), customer.getUserId(), customer.getSpentTime(), customer.getTotalPay())) {
+                Group grp = allGroups.findGroupFor(customer);
+                if (grp == null) {
+                    grp = allGroups.find(GroupType.NONE);
+                }
+                customer.setGroup(grp);
+                allCustomers.add(customer);
+                System.out.println("\n" + customer);
+            } else {
+                System.out.println("No customer is added. Please fill out all information.");
+            }
         }
     }
 
@@ -125,8 +133,10 @@ public class CustomerMenu implements Menu {
         }
 
         Group grp = allGroups.findGroupFor(customer);
-        if (grp == null) customer.setGroup(null);
-        else if (!grp.equals(customer.getGroup())) customer.setGroup(grp);
+        if (grp == null) {
+            grp = allGroups.find(GroupType.NONE);
+        }
+        customer.setGroup(grp);
     }
 
     public void deleteCustomerData() {
@@ -203,9 +213,13 @@ public class CustomerMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("\nInput Customer's Spent Time: ");
-                int spentTime = Integer.parseInt(nextLine(Message.END_MSG));
-                if (spentTime < 0) throw new InputRangeException();
-                customer.setSpentTime(spentTime);
+                try {
+                    int spentTime = Integer.parseInt(nextLine(Message.END_MSG));
+                    if (spentTime < 0) throw new InputRangeException();
+                    customer.setSpentTime(spentTime);
+                } catch (NumberFormatException e) {
+                    System.out.println(Message.ERR_MSG_INVALID_INPUT_TYPE);
+                }
                 return;
             } catch (InputRangeException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_RANGE);

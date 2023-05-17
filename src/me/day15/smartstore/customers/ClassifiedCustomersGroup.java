@@ -1,6 +1,7 @@
 package me.day15.smartstore.customers;
 
 
+import me.day15.smartstore.arrays.DArray;
 import me.day15.smartstore.groups.GroupType;
 import me.day15.smartstore.groups.Parameter;
 import me.day15.smartstore.util.Message;
@@ -8,7 +9,7 @@ import me.day15.smartstore.util.Message;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class ClassifiedCustomersGroup {
+public class ClassifiedCustomersGroup extends DArray<ClassifiedCustomers> {
 
     /////////////////////////////////////////
     ////////////// singleton ////////////////
@@ -23,37 +24,26 @@ public class ClassifiedCustomersGroup {
     /////////////////////////////////////////
     /////////////////////////////////////////
 
-    private ClassifiedCustomers[] classifiedCustomers;
 
     public ClassifiedCustomersGroup() {
-        classifiedCustomers = new ClassifiedCustomers[GroupType.size()];
+        arrays = new ClassifiedCustomers[GroupType.size()];
 
         for (int i = 0; i < GroupType.size(); i++) {
-            classifiedCustomers[i] = new ClassifiedCustomers();
+            arrays[i] = new ClassifiedCustomers();
         }
+
+        size = GroupType.size();
     }
 
 
-    public ClassifiedCustomers get(int i) {
-        return classifiedCustomers[i];
-    }
-
-    public void set(int i, ClassifiedCustomers customers) {
-        classifiedCustomers[i] = customers;
-    }
-
-    public int size() {
-        return GroupType.size();
-    }
-    
     public void print() {
-        for (int i = 0; i < classifiedCustomers.length; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.println("\n==============================");
 
-            if (classifiedCustomers[i] == null) return;
+            if (arrays[i] == null) continue;
 
-            GroupType groupType = classifiedCustomers[i].getGroup().getType();
-            Parameter parameter = classifiedCustomers[i].getGroup().getParam();
+            GroupType groupType = arrays[i].getGroup().getType();
+            Parameter parameter = arrays[i].getGroup().getParam();
 
             System.out.printf("Group : %s ( Time : %d, Pay : %d )\n",
                     groupType,
@@ -61,11 +51,11 @@ public class ClassifiedCustomersGroup {
                     parameter != null ? parameter.getMinimumTotalPay() : null);
             System.out.println("==============================");
 
-            if (classifiedCustomers[i] == null || classifiedCustomers[i].isEmpty()) {
+            if (arrays[i].isEmpty()) {
                 System.out.println("Null.");
                 continue;
             }
-            classifiedCustomers[i].print();
+            arrays[i].print();
             System.out.println("==============================\n");
         }
 
@@ -93,18 +83,18 @@ public class ClassifiedCustomersGroup {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ClassifiedCustomersGroup that = (ClassifiedCustomersGroup) o;
-        return Arrays.equals(classifiedCustomers, that.classifiedCustomers);
+        return Arrays.equals(arrays, that.arrays);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(classifiedCustomers);
+        return Arrays.hashCode(arrays);
     }
 
     @Override
     public String toString() {
         return "ClassifiedCustomersGroup{" +
-                "classifiedCustomers=" + Arrays.toString(classifiedCustomers) +
+                "classifiedCustomers=" + Arrays.toString(arrays) +
                 '}';
     }
 }
