@@ -2,10 +2,7 @@ package me.day15.smartstore.menu;
 
 import me.day15.smartstore.customers.Customer;
 import me.day15.smartstore.customers.Customers;
-import me.day15.smartstore.exception.ArrayEmptyException;
-import me.day15.smartstore.exception.InputEmptyException;
-import me.day15.smartstore.exception.InputEndException;
-import me.day15.smartstore.exception.InputRangeException;
+import me.day15.smartstore.exception.*;
 import me.day15.smartstore.groups.Group;
 import me.day15.smartstore.groups.GroupType;
 import me.day15.smartstore.groups.Groups;
@@ -161,10 +158,10 @@ public class CustomerMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("How many customers to input? ");
-                int size = Integer.parseInt(nextLine(Message.END_MSG));
+                int size = nextInt(Message.END_MSG);
                 if (size < 0) throw new InputRangeException();
                 return size;
-            } catch (NumberFormatException e) {
+            } catch (InputFormatException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_FORMAT);
             } catch (InputRangeException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_RANGE);
@@ -213,14 +210,12 @@ public class CustomerMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("\nInput Customer's Spent Time: ");
-                try {
-                    int spentTime = Integer.parseInt(nextLine(Message.END_MSG));
-                    if (spentTime < 0) throw new InputRangeException();
-                    customer.setSpentTime(spentTime);
-                } catch (NumberFormatException e) {
-                    System.out.println(Message.ERR_MSG_INVALID_INPUT_TYPE);
-                }
+                int spentTime = nextInt(Message.END_MSG);
+                if (spentTime < 0) throw new InputRangeException();
+                customer.setSpentTime(spentTime);
                 return;
+            } catch (InputFormatException e) {
+                System.out.println(Message.ERR_MSG_INVALID_INPUT_TYPE);
             } catch (InputRangeException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_RANGE);
             } catch (InputEndException e) {
@@ -234,11 +229,11 @@ public class CustomerMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("\nInput Customer's Total Payment: ");
-                int totalPay = Integer.parseInt(nextLine(Message.END_MSG));
+                int totalPay = nextInt(Message.END_MSG);
                 if (totalPay < 0) throw new InputRangeException();
                 customer.setTotalPay(totalPay);
                 return;
-            } catch (NumberFormatException e) {
+            } catch (InputFormatException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_FORMAT);
             } catch (InputRangeException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_RANGE);
@@ -257,10 +252,10 @@ public class CustomerMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("\nWhich customer ( 1 ~ " + size + " )? ");
-                int custNo = Integer.parseInt(nextLine());
+                int custNo = nextInt(Message.END_MSG);
                 if (!(custNo >= 1 && custNo <= size)) throw new InputRangeException();
                 return custNo;
-            } catch (NumberFormatException e) {
+            } catch (InputFormatException e) {
                 System.out.println("\n" + Message.ERR_MSG_INVALID_INPUT_FORMAT);
             } catch (InputRangeException e) {
                 System.out.println("\n" + Message.ERR_MSG_INVALID_INPUT_RANGE);

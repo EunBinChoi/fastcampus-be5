@@ -1,6 +1,7 @@
 package me.day15.smartstore.menu;
 
 import me.day15.smartstore.exception.InputEndException;
+import me.day15.smartstore.exception.InputFormatException;
 import me.day15.smartstore.exception.InputRangeException;
 import me.day15.smartstore.util.Message;
 
@@ -22,6 +23,16 @@ public interface Menu {
 
         String[] strings = str.split("\\s");
         return (strings.length > 1) ? "" : str;
+    }
+
+    default int nextInt(String messageForEnd) {
+        String str = nextLine();
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new InputFormatException();
+        }
+
     }
 
     default int chooseMenu(String[] menus) {

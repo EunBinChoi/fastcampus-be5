@@ -3,6 +3,7 @@ package me.day15.smartstore.menu;
 import me.day15.smartstore.customers.Customers;
 import me.day15.smartstore.exception.InputEmptyException;
 import me.day15.smartstore.exception.InputEndException;
+import me.day15.smartstore.exception.InputFormatException;
 import me.day15.smartstore.exception.InputRangeException;
 import me.day15.smartstore.groups.Group;
 import me.day15.smartstore.groups.GroupType;
@@ -183,12 +184,12 @@ public class GroupMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("\nInput Minimum Spent Time: ");
-                int minimumSpentTime = Integer.parseInt(nextLine(Message.END_MSG));
+                int minimumSpentTime = nextInt(Message.END_MSG);
                 if (minimumSpentTime < 0) throw new InputRangeException();
 
                 param.setMinimumSpentTime(minimumSpentTime);
                 return;
-            } catch (NumberFormatException e) {
+            } catch (InputFormatException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_TYPE);
             } catch (InputRangeException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_RANGE);
@@ -205,11 +206,11 @@ public class GroupMenu implements Menu {
         while ( true ) {
             try {
                 System.out.print("\nInput Minimum Total Pay: ");
-                int minimumTotalPay = Integer.parseInt(nextLine(Message.END_MSG));
+                int minimumTotalPay = nextInt(Message.END_MSG);
                 if (minimumTotalPay < 0) throw new InputRangeException();
                 param.setMinimumTotalPay(minimumTotalPay);
                 return;
-            } catch (NumberFormatException e) {
+            } catch (InputFormatException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_TYPE);
             } catch (InputRangeException e) {
                 System.out.println(Message.ERR_MSG_INVALID_INPUT_RANGE);
