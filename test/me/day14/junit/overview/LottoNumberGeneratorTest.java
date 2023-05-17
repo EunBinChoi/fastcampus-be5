@@ -1,40 +1,17 @@
-package me.day14.junit.test;
+package me.day14.junit.overview;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 // 1000원을 주면 1개의 로또를 생성해주는 클래스
-public class LottoNumberGenerator { // 1 ~ 45번 6개
-    public List<Integer> generate(final int money) { // test code: 3개 (개발할 때 개발자가 고려한 사항)
-        // 새로운 기능 추가
-
-        if (!isValidMoney(money)) {
-            throw new RuntimeException("올바른 금액이 아닙니다.");
-        }
-
-        // 새로운 기능 추가
-        return generate();
-    }
-
-    private boolean isValidMoney(final int money) {
-        return money == 1000;
-    }
-
-    private List<Integer> generate() {
-        return new Random()
-                .ints(1, 45 + 1)
-                .distinct() // 중복 제거
-                .limit(6) // 6개까지 만들겠다!
-                .boxed() // int -> Integer
-                .collect(Collectors.toList());
-    }
+public class LottoNumberGeneratorTest { // 1 ~ 45번 6개
 
     // 위와 같은 로또 번호 생성 코드에 대한 테스트 코드들을 작성
     // 1. 로또 번호 갯수 테스트
@@ -55,12 +32,22 @@ public class LottoNumberGenerator { // 1 ~ 45번 6개
     // 데이터베이스_삽입_성공_테스트
     // 데이터베이스_삽입_실패_테스트
     // 데이터베이스_삽입_실패_테스트
+    LottoNumberGenerator lottoNumberGenerator;
+
+    @BeforeEach
+    void before() {
+        lottoNumberGenerator = new LottoNumberGenerator();
+    }
+
+    @AfterEach
+    void after() {
+        lottoNumberGenerator = null;
+    }
 
     @DisplayName("로또 번호 갯수 테스트")
     @Test
     void lottoNumberSizeTest() {
         // given
-        final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         final int price = 1000;
 
         // when
@@ -74,7 +61,6 @@ public class LottoNumberGenerator { // 1 ~ 45번 6개
     @Test
     void lottoNumberRangeTest() {
         // given
-        final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         final int price = 1000;
 
         // when
@@ -89,7 +75,6 @@ public class LottoNumberGenerator { // 1 ~ 45번 6개
     @Test
     void lottoNumberInvalidMoneyTest() {
         // given
-        final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         final int price = 2000;
 
         // when
